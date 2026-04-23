@@ -10,6 +10,7 @@ export const Container = styled.div`
     background-color: var(--tertiary);
     padding: 11px 0;
 
+    height: 100%;
     max-height: 100vh;
     overflow-y: scroll;
 
@@ -20,7 +21,8 @@ export const Container = styled.div`
 
 export const Separator =styled.div`
     width: 32px;
-    border-bottom: 2px splid var(--quaternary);
+    border-bottom: 2px solid var(--quaternary);
 
     margin-bottom: 8px;
+    flex-shrink: 0; 
 `;
