@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Container, HashtagIcon, InviteIcon, SettingsIcon } from './styles'
+import { Container, HashtagIcon, InviteIcon, SettingsIcon } from './styles';
 
 export interface Props {
     ChannelName: string;
