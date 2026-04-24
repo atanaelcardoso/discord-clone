@@ -5,10 +5,18 @@ export const Container = styled.div`
     grid-area: CD;
     
     display: flex;
-    flex-direction: column;
+    flex-direction: column; 
     justify-content: space-between;
 
     background-color: var(--primary);
+
+    ::-webkit-scrollbar {
+    width: 4px;
+}
+    ::-webkit-scrollbar-thumb {
+        background-color: var(--tertiary);
+        border-radius: 4px;
+    }
 `;
 
 export const Message = styled.div`

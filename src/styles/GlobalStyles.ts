@@ -39,4 +39,11 @@ export default createGlobalStyle`
 
         --rocketseat: #6633cc;
     }
+        ::-webkit-scrollbar {
+            width: 4px;
+        }
+        ::-webkit-scrollbar-thumb {
+            background-color: var(--tertiary);
+            border-radius: 4px;
+        }
 `;

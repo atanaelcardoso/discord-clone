@@ -1,14 +1,25 @@
-import React from 'react';
+import React, { useRef, useEffect } from 'react';
 
 import { Container, Message, InputWrapper, Input, InputIcon } from './styles';
 import ChannelMessage, { Mention} from '../ChannelMessage';
 
 const ChannelData: React.FC = () => {
+    const messagesRef = useRef<HTMLDivElement>(null);
+
+    useEffect(() => {
+        const div = messagesRef.current;
+
+        if (div) {
+            div.scrollTop = div.scrollHeight;
+        }
+    }, [messagesRef]);
+
     return (
         <Container>
-            <Message>
+            <Message ref={messagesRef}>
                 {Array.from(Array(15).keys()).map((n) => (
                 <ChannelMessage
+                    key={n}
                     author="John Doe"
                     date="Hoje"
                     content="Olá, como você está?"
