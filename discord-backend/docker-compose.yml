@@ -1,0 +1,13 @@
+version: '3.8'
+services:
+  db:
+    image: mysql:8.0
+    container_name: discord_mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: discord_clone
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./initdb:/docker-entrypoint-initdb.d
