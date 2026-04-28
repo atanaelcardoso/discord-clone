@@ -1,6 +1,7 @@
 {
   "name": "discord-backend",
   "version": "1.0.0",
+  "type": "module",
   "main": "index.js",
   "license": "MIT",
   "dependencies": {
@@ -19,6 +20,6 @@
     "typescript": "^6.0.3"
   },
   "scripts": {
-    "dev": "ts-node-dev --respawn --transpile-only src/server.ts"
+    "dev": "tsx watch src/server.ts"
   }
 }
