@@ -1,42 +1,23 @@
-import express from 'express';
-import { createServer } from 'http';
-import { Server } from 'socket.io';
-import cors from 'cors';
-import { connection } from './database';
+import mysql from "mysql2/promise";
+import "dotenv/config";
 
-const app = express();
-app.use(cors());
-app.use(express.json());
-
-const httpServer = createServer(app);
-const io = new Server(httpServer, {
-  cors: { origin: "http://localhost:5173" } // Porta do seu Vite
+// Criamos um Pool para gerenciar múltiplas conexões simultâneas (Sistemas Distribuídos)
+export const connection = mysql.createPool({
+  host: process.env.DB_HOST || "localhost",
+  user: process.env.DB_USER || "root",
+  password: process.env.DB_PASSWORD || "root",
+  database: process.env.DB_NAME || "discord_clone",
+  port: Number(process.env.DB_PORT) || 3306,
+  waitForConnections: true,
+  connectionLimit: 10,
+  queueLimit: 0,
 });
 
-// Teste de conexão com o banco
-connection.query('SELECT 1')
-  .then(() => console.log('✅ Banco de Dados conectado via Docker!'))
-  .catch(err => console.error('❌ Erro ao conectar ao banco:', err));
-
-io.on('connection', (socket) => {
-  console.log(`🔌 Novo usuário conectado: ${socket.id}`);
-
-  socket.on('sendMessage', async (data) => {
-    try {
-      // Salva no MySQL (Persistência)
-      await connection.execute(
-        'INSERT INTO messages (content, user_id) VALUES (?, ?)',
-        [data.content, data.userId]
-      );
-
-      // Distribui para os outros usuários (Tempo Real)
-      io.emit('receivedMessage', data);
-    } catch (error) {
-      console.error('Erro ao salvar mensagem:', error);
-    }
+// Teste de conexão imediato
+connection
+  .query("SELECT 1")
+  .then(() => console.log("✅ Conectado ao MySQL via Docker!"))
+  .catch((err) => {
+    console.error("❌ Erro ao conectar ao banco de dados:");
+    console.error(err.message);
   });
-});
-
-httpServer.listen(3333, () => {
-  console.log('🚀 Servidor e Socket.io prontos na porta 3333');
-});
