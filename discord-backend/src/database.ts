@@ -1,7 +1,9 @@
+import mysql from 'mysql2/promise';
+
 export const connection = mysql.createPool({
-  host: '127.0.0.1',
-  user: 'root',
-  password: 'root',
-  database: 'discord_clone',
-  port: 3306,
+  host: process.env.DB_HOST || 'localhost',
+  user: process.env.DB_USER || 'root',
+  password: process.env.DB_PASSWORD || 'root',
+  database: process.env.DB_NAME || 'discord_clone',
+  port: Number(process.env.DB_PORT) || 3306,
 });
