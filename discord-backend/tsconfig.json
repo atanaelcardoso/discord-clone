@@ -1,12 +1,15 @@
 {
   // Visit https://aka.ms/tsconfig to read more about this file
   "compilerOptions": {
-    "target": "es2020",
-    "module": "commonjs",
-    "rootDir": "./src" /* Adicione ou altere esta linha */,
-    "outDir": "./dist" /* É bom definir para onde o código vai após o build */,
+    "target": "ESNext",
+    "module": "NodeNext",    
+    "moduleResolution": "NodeNext", 
     "esModuleInterop": true,
+    "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
+    "strict": true,
+    "rootDir": "./src",
+    "outDir": "./dist",
     // File Layout
     // "rootDir": "./src",
     // "outDir": "./dist",

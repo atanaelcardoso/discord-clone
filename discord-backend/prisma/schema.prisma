@@ -1,0 +1,107 @@
+datasource db {
+  provider = "mysql"
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model User {
+  id        Int      @id @default(autoincrement())
+  nickname  String
+  email     String   @unique
+  password  String
+  avatar    String?
+  isBot     Boolean  @default(false)
+  createdAt DateTime @default(now())
+
+  // Relacionamentos
+  servers        Server[]       @relation("ServerOwner")
+  memberships    ServerMember[]
+  messages       Message[]
+  memberRoles    MemberRole[]
+
+  @@map("users")
+}
+
+model Server {
+  id        Int      @id @default(autoincrement())
+  name      String
+  icon      String?
+  ownerId   Int
+  createdAt DateTime @default(now())
+
+  owner    User           @relation("ServerOwner", fields: [ownerId], references: [id])
+  channels Channel[]
+  members  ServerMember[]
+  roles    Role[]
+
+  @@map("servers")
+}
+
+model Role {
+  id        Int     @id @default(autoincrement())
+  name      String
+  color     String  @default("#8a8c90")
+  hoist     Boolean @default(false)
+  serverId  Int
+
+  // Relacionamentos
+  server      Server       @relation(fields: [serverId], references: [id], onDelete: Cascade)
+  memberRoles MemberRole[]
+
+  @@map("roles")
+}
+
+model ServerMember {
+  userId   Int
+  serverId Int
+  joinedAt DateTime @default(now())
+
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  server Server @relation(fields: [serverId], references: [id], onDelete: Cascade)
+
+  @@id([userId, serverId])
+  @@map("server_members")
+}
+
+model MemberRole {
+  userId Int
+  roleId Int
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  role Role @relation(fields: [roleId], references: [id], onDelete: Cascade)
+
+  @@id([userId, roleId])
+  @@map("member_roles")
+}
+
+model Channel {
+  id       Int         @id @default(autoincrement())
+  name     String
+  type     ChannelType @default(TEXT)
+  serverId Int
+
+  server   Server    @relation(fields: [serverId], references: [id], onDelete: Cascade)
+  messages Message[]
+
+  @@map("channels")
+}
+
+enum ChannelType {
+  TEXT
+  VOICE
+}
+
+model Message {
+  id        Int      @id @default(autoincrement())
+  content   String   @db.Text
+  userId    Int
+  channelId Int
+  createdAt DateTime @default(now())
+
+  user    User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  channel Channel @relation(fields: [channelId], references: [id], onDelete: Cascade)
+
+  @@map("messages")
+}
