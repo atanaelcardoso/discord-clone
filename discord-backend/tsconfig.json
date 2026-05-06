@@ -22,7 +22,6 @@
     "noUncheckedSideEffectImports": true,
     "moduleDetection": "force",
 
-    /* ⚠️ DESATIVE ESTA LINHA PARA NÃO QUEBRAR O TS-NODE-DEV */
     "verbatimModuleSyntax": false 
   }
 }
