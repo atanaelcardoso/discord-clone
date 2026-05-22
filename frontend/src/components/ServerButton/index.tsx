@@ -9,14 +9,26 @@ export interface Props {
     isHome?: boolean;
     hasNotifications?: boolean;
     mentions?: number;
+    title?: string; 
 }
 
 const ServerButton: React.FC<Props> = ({
     selected, 
     isHome,
     hasNotifications,
-    mentions
+    mentions,
+    title 
 }) => {
+    const getInitials = (name?: string) => {
+        if (!name) return '';
+        return name
+            .split(' ')                   
+            .map(word => word[0]) 
+            .join('')
+            .slice(0, 2)  
+            .toUpperCase();
+    };
+
     return (
         <Button
             isHome={isHome}
@@ -24,7 +36,12 @@ const ServerButton: React.FC<Props> = ({
             mentions={mentions}
             className={selected ? 'active' : ''}
         >
-            {isHome && <img src={Logo} alt="Discord" />}
+            {}
+            {isHome ? (
+                <img src={Logo} alt="Discord" />
+            ) : (
+                getInitials(title)
+            )}
         </Button>
     )
 };
