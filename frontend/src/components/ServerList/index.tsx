@@ -1,30 +1,44 @@
 import type React from 'react';
-
+import { useEffect, useState } from 'react'; 
 import ServerButton from '../ServerButton';
-
 import { Container, Separator } from './styles';
+import api from '../../Services/api';
 
-const ServerList : React.FC = () => {
+interface ServerData {
+    id: number;
+    name: string;
+    icon?: string;
+}
+
+const ServerList: React.FC = () => {
+    const [servers, setServers] = useState<ServerData[]>([]);
+
+    useEffect(() => {
+        api.get('/servers')
+            .then(response => {
+                setServers(response.data);
+            })
+            .catch(error => {
+                console.error("Erro ao carregar a lista de servidores:", error);
+            });
+    }, []);
+
     return (
         <Container>
+            {}
             <ServerButton isHome />
 
             <Separator />
 
-            <ServerButton />
-            <ServerButton hasNotifications />
-            <ServerButton mentions={3} />
-            <ServerButton />
-            <ServerButton />
-            <ServerButton />
-            <ServerButton hasNotifications />
-            <ServerButton />
-            <ServerButton />
-            <ServerButton mentions={72} />
-            <ServerButton />
-            <ServerButton />
+            {}
+            {servers.map(server => (
+                <ServerButton 
+                    key={server.id} 
+                    title={server.name}
+                />
+            ))}
         </Container>
-    )
+    );
 };
 
 export default ServerList;
