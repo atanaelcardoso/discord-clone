@@ -9,17 +9,23 @@ export interface Props {
     content: string | React.ReactNode | React.ReactNode;
     hasMention?: boolean;
     isBot?: boolean;
+    avatarUrl?: string | null;
 }
 
-const ChannelMessage: React.FC<Props> = ({ 
+export default function ChannelMessage({ 
     author, 
     date, 
     content, 
     hasMention, 
-    isBot }) => {
+    isBot,
+    avatarUrl 
+}: Props) {
     return (
         <Container className={hasMention ? 'mention' : ''}>
-            <Avatar className={isBot ? 'bot' : ''} />
+            <Avatar 
+                className={isBot ? 'bot' : ''} 
+                style={{ backgroundImage: avatarUrl ? `url(${avatarUrl})` : undefined }} 
+            />
             <Message>
                 <Header>
                     <strong>{author}</strong>
@@ -33,5 +39,3 @@ const ChannelMessage: React.FC<Props> = ({
         </Container>
     )
 };
-
-export default ChannelMessage;
