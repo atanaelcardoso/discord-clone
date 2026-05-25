@@ -1,8 +1,7 @@
 import Logo from '../../assets/Logo.svg';
-
 import { Button } from './styles';
 
-export interface Props {
+export interface ServerButtonProps {
     selected?: boolean;
     isHome?: boolean;
     hasNotifications?: boolean;
@@ -16,7 +15,7 @@ export default function ServerButton({
     hasNotifications,
     mentions,
     title 
-}: Props) {
+}: ServerButtonProps) {
     const getInitials = (name?: string) => {
         if (!name) return '';
         return name
@@ -29,9 +28,9 @@ export default function ServerButton({
 
     return (
         <Button
-            isHome={isHome}
-            hasNotifications={hasNotifications}
-            mentions={mentions}
+            $isHome={isHome}
+            $hasNotifications={hasNotifications}
+            $mentions={mentions}                 
             className={selected ? 'active' : ''}
         >
             {isHome ? (
