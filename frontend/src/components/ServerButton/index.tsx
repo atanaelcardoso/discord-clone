@@ -1,32 +1,43 @@
-import type React from "react";
-
 import Logo from '../../assets/Logo.svg';
-
 import { Button } from './styles';
 
-export interface Props {
+export interface ServerButtonProps {
     selected?: boolean;
     isHome?: boolean;
     hasNotifications?: boolean;
     mentions?: number;
+    title?: string; 
 }
 
-const ServerButton: React.FC<Props> = ({
+export default function ServerButton({
     selected, 
     isHome,
     hasNotifications,
-    mentions
-}) => {
+    mentions,
+    title 
+}: ServerButtonProps) {
+    const getInitials = (name?: string) => {
+        if (!name) return '';
+        return name
+            .split(' ')                   
+            .map(word => word[0]) 
+            .join('')
+            .slice(0, 2)  
+            .toUpperCase();
+    };
+
     return (
         <Button
-            isHome={isHome}
-            hasNotifications={hasNotifications}
-            mentions={mentions}
+            $isHome={isHome}
+            $hasNotifications={hasNotifications}
+            $mentions={mentions}                 
             className={selected ? 'active' : ''}
         >
-            {isHome && <img src={Logo} alt="Discord" />}
+            {isHome ? (
+                <img src={Logo} alt="Discord" />
+            ) : (
+                getInitials(title)
+            )}
         </Button>
-    )
-};
-
-export default ServerButton;
+    );
+}

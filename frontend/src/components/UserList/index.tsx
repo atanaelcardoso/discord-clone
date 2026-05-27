@@ -1,49 +1,76 @@
-import React from 'react';
+import { useEffect, useState } from 'react';
+import api from '../../Services/api';
 
 import { Container, Role, User, Avatar } from './styles';
+
+interface UserBackend {
+    id: number;
+    nickname: string;
+    avatar: string | null;
+    isBot: boolean;
+}
 interface UserProps {
     nickname: string;
     isBot?: boolean;
+    avatarUrl?: string | null;
 }
 
-const UserRow: React.FC<UserProps> = ({ nickname, isBot }) => {
+function UserRow({ nickname, isBot, avatarUrl }: UserProps) {
     return (
         <User>
-            <Avatar className={isBot ? 'bot' : ''} />
-
+            <Avatar 
+                className={isBot ? 'bot' : ''} 
+                style={{ backgroundImage: avatarUrl ? `url(${avatarUrl})` : undefined }} 
+                />
             <strong>{nickname}</strong>
-
             {isBot && <span>Bot</span>}
         </User>
     )
 }
 
-const UserList: React.FC = () => {
+export default function UserList() {
+    const [users, setUsers] = useState<UserBackend[]>([]);
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        async function fetchUsers() {
+            try {
+                const response = await api.get<UserBackend[]>('/users');
+                setUsers(response.data);
+            } catch (error) {
+                console.error('Error ao buscar usuários:',error);
+            } finally {
+                setLoading(false);
+            }
+        }
+            fetchUsers();
+    }, []);
+
+    if (loading) {
+        return (
+            <Container>
+                <Role>Carregando usuários...</Role>
+            </Container>
+        );
+    }
+
     return (
         <Container>
-            <Role>Disponível - 1</Role>
-            <UserRow nickname="John Doe" />
+            <Role>Disponível - {users.length}</Role>
 
-            <Role>Offline - 18</Role>
-            <UserRow nickname="Jane Doe" isBot />
-            <UserRow nickname="John Smith" />
-            <UserRow nickname="Jane Smith" />
-            <UserRow nickname="John Appleseed" />
-            <UserRow nickname="Jane Appleseed" />
-            <UserRow nickname="John Doe" />
-            <UserRow nickname="Jane Doe" />
-            <UserRow nickname="John Smith" />
-            <UserRow nickname="Jane Smith" />
-            <UserRow nickname="John Appleseed" />
-            <UserRow nickname="Jane Appleseed" />
-            <UserRow nickname="John Doe" />
-            <UserRow nickname="Jane Doe" />
-            <UserRow nickname="John Smith" />
-            <UserRow nickname="Jane Smith" />
-            <UserRow nickname="John Appleseed" />
-            <UserRow nickname="Jane Appleseed" />  
-        </Container>
+            {users.length === 0 ? (
+                <p style= {{ color: 'var(--gray)', 'padding': '0 16px' }}>Nenhum usuário disponível.</p>
+            ) : (
+                users.map(user => (
+                    <UserRow
+                        key={user.id}
+                        nickname={user.nickname}
+                        isBot={user.isBot}
+                        avatarUrl={user.avatar}
+                    />
+                ))
+            )}
+            <Role>Offline - 0</Role>
+        </Container>    
     );
-};
-
-export default UserList;
+}

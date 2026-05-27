@@ -1,19 +1,15 @@
-import React from 'react';
-
 import { Container, HashtagIcon, InviteIcon, SettingsIcon } from './styles';
-
-export interface Props {
+export interface ChannelButtonProps {
     ChannelName: string;
     selected?: boolean;
 }
 
-const ChannelButton: React.FC<Props> = ({ 
-    ChannelName, 
-    selected 
-}) => {
+export default function ChannelButton({
+    ChannelName,
+    selected
+}: ChannelButtonProps) {
     return (
         <Container className={selected ? 'active' : undefined}>
-
             <div>
                 <HashtagIcon />
                 <span>{ChannelName}</span>
@@ -24,7 +20,5 @@ const ChannelButton: React.FC<Props> = ({
                 <SettingsIcon />
             </div>
         </Container>
-    )
-};
-
-export default ChannelButton;
+    );
+}

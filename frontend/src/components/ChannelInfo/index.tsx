@@ -1,23 +1,24 @@
-import React from 'react';
-
 import { Container, 
         HashtagIcon,
         Title,
         Separator,
         Description } from './styles';
 
-const ChannelInfo: React.FC = () => {
+export interface ChannelInfoProps {
+    title?: string;
+    description?: string;
+}
+
+export default function ChannelInfo({ title, description }: ChannelInfoProps) {
     return (
         <Container>
             <HashtagIcon />
 
-            <Title>chat-livre</Title>
+            <Title>{title}</Title>
 
             <Separator />
             
-            <Description>Canal aberto para coversas</Description>
+            <Description>{description} || 'Nenhuma descrição'</Description>
         </Container>
     )
 };
-
-export default ChannelInfo;

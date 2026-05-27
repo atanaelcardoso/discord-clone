@@ -1,15 +1,33 @@
-import React from 'react';
-
+import { useEffect, useState } from 'react';
+import api from '../../Services/api'; 
 import { Container, Title, ExpandIcon } from './styles';
 
-const ServerName: React.FC = () => {
-    return (
-        <Container>
-            <Title>Servidor do Rodz</Title>
-           
-           <ExpandIcon />
-        </Container>
-    )
-};
+export default function ServerName() {
+  const [serverName, setServerName] = useState<string>('Carregando...');
 
-export default ServerName;
+  useEffect(() => {
+    async function fetchServerName() {
+      try {
+        const response = await api.get('/servers');
+        
+        if (Array.isArray(response.data)) {
+          setServerName(response.data[0]?.name || 'Servidor Central');
+        } else {
+          setServerName(response.data?.name || 'Servidor Central');
+        }
+      } catch (error) {
+        console.error('Erro na requisição da API:', error);
+        setServerName('Servidor Offline'); 
+      }
+    }
+
+    fetchServerName();
+  }, []);
+
+  return (
+    <Container>
+      <Title>{serverName}</Title>
+      <ExpandIcon />
+    </Container>
+  );
+}

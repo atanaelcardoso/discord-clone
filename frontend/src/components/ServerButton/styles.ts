@@ -1,14 +1,14 @@
 import styled from "styled-components";
 
 // Definição da interface para o TypeScript parar de reclamar
-export interface Props {
+export interface ButtonProps {
   selected?: boolean;
-  isHome?: boolean;
-  hasNotifications?: boolean;
-  mentions?: number;
+  $isHome?: boolean;
+  $hasNotifications?: boolean;
+  $mentions?: number;
 }
 
-export const Button = styled.button<Props>`
+export const Button = styled.button<ButtonProps>`
     display: flex;
     align-items: center;
     justify-content: center;
@@ -21,7 +21,7 @@ export const Button = styled.button<Props>`
     border-radius: 50%; 
 
     background-color: ${(props) =>
-        props.isHome ? 'var(--rocketseat)' : 'var(--primary)'};
+        props.$isHome ? 'var(--rocketseat)' : 'var(--primary)'};
         
     position: relative;
     cursor: pointer;
@@ -43,7 +43,7 @@ export const Button = styled.button<Props>`
         border-radius: 50%;
 
         content: '';
-        display: ${(props) => (props.hasNotifications ? 'inline' : 'none')};
+        display: ${(props) => (props.$hasNotifications ? 'inline' : 'none')};
     } 
 
     &::after {
@@ -65,9 +65,9 @@ export const Button = styled.button<Props>`
         font-weight: bold;
         color: var(--white);
 
-        content: '${(props) => (props.mentions && props.mentions > 0 ? props.mentions : '')}';
+        content: '${(props) => (props.$mentions && props.$mentions > 0 ? props.$mentions : '')}';
         
-        display: ${(props) => (props.mentions && props.mentions > 0 ? 'inline' : 'none')};
+        display: ${(props) => (props.$mentions && props.$mentions > 0 ? 'inline' : 'none')};
     }
     
     transition: border-radius 0.2s, background-color 0.2s;
@@ -75,6 +75,6 @@ export const Button = styled.button<Props>`
     &.active,
     &:hover {
         border-radius: 16px;
-        background-color: ${props => props.isHome ? 'var(--rocketseat)' : 'var(--discord)'};
+        background-color: ${props => props.$isHome ? 'var(--rocketseat)' : 'var(--discord)'};
     }
 `;
