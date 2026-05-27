@@ -10,10 +10,14 @@ export default function ServerName() {
       try {
         const response = await api.get('/servers');
         
-        setServerName(response.data.name); 
+        if (Array.isArray(response.data)) {
+          setServerName(response.data[0]?.name || 'Servidor Central');
+        } else {
+          setServerName(response.data?.name || 'Servidor Central');
+        }
       } catch (error) {
-        console.error('Erro ao buscar dados do servidor:', error);
-        setServerName('Erro ao carregar');
+        console.error('Erro na requisição da API:', error);
+        setServerName('Servidor Offline'); 
       }
     }
 

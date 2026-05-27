@@ -5,8 +5,8 @@ import { Container,
         Description } from './styles';
 
 export interface ChannelInfoProps {
-    title: string;
-    description: string;
+    title?: string;
+    description?: string;
 }
 
 export default function ChannelInfo({ title, description }: ChannelInfoProps) {
