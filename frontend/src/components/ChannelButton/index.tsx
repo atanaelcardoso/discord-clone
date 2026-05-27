@@ -4,9 +4,9 @@ export interface ChannelButtonProps {
     selected?: boolean;
 }
 
-export default function ChannelButton({ 
-    ChannelName, 
-    selected 
+export default function ChannelButton({
+    ChannelName,
+    selected
 }: ChannelButtonProps) {
     return (
         <Container className={selected ? 'active' : undefined}>
