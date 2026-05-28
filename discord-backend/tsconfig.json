@@ -23,5 +23,7 @@
     "moduleDetection": "force",
 
     "verbatimModuleSyntax": false 
-  }
+  },
+  "include": ["src/**/*"],
+  "exclude": ["node_modules", "generated"]
 }
