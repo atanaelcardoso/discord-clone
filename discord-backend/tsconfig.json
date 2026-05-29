@@ -18,10 +18,9 @@
     "isolatedModules": true,
     "noUncheckedSideEffectImports": true,
     "moduleDetection": "force",
-    "verbatimModuleSyntax": false 
+    "verbatimModuleSyntax": false,
+    "types": ["node"]
   },
-  "exclude": [
-    "node_modules",
-    "generated"
-  ]
+  "include": ["src/**/*"],
+  "exclude": ["node_modules", "dist"]
 }
