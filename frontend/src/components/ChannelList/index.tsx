@@ -2,6 +2,9 @@ import { useEffect, useState } from 'react';
 import api from '../../Services/api';
 import ChannelButton from '../ChannelButton';
 
+import '../../utils/i18n'
+import { useTranslation } from 'react-i18next';
+
 import { Container, Category, AddCategoryIcon } from './styles'
 
 interface channel {
@@ -10,6 +13,8 @@ interface channel {
 }
 
 export default function ChannelList() {
+    const { t } = useTranslation();
+
     const [channels, setChannels] = useState<channel[]>([]);
     const [loading, setLoading] = useState(true);
 
@@ -19,7 +24,7 @@ export default function ChannelList() {
                 const response = await api.get('/channels');
                 setChannels(response.data);
             } catch (error) {
-                console.error('Error ao buscar canais do backend:', error);
+                console.error('Error retrieving backend channels:', error);
             } finally {
                 setLoading(false);
             }
@@ -31,7 +36,7 @@ export default function ChannelList() {
     return (
         <Container>
             <Category>
-                <span>Canais de texto</span>
+                <span>{t("Canais de texto")}</span>
                 <AddCategoryIcon />
             </Category>
 

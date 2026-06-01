@@ -2,6 +2,9 @@ import { useEffect, useState, useRef, type KeyboardEvent } from 'react';
 import api from '../../Services/api';
 import ChannelMessage from '../ChannelMessage';
 
+import '../../utils/i18n'
+import { useTranslation } from 'react-i18next';
+
 import { Container, Message, InputWrapper, Input, InputIcon } from './styles';
 
 interface MessageBackend {
@@ -17,6 +20,8 @@ interface MessageBackend {
 }
 
 export default function ChannelData() {
+    const { t } = useTranslation();
+
     const [messages, setMessages] = useState<MessageBackend[]>([]);
     const [inputText, setInputText] = useState('');
     const messagesRef = useRef<HTMLDivElement>(null);
@@ -28,7 +33,7 @@ export default function ChannelData() {
                 const response = await api.get<MessageBackend[]>(`/messages/${currentChannelId}`);
                 setMessages(response.data);
             } catch (error) {
-                console.error('Erro ao buscar mensagens:', error);
+                console.error('Error retrieving messages:', error);
             }
         }
 
@@ -56,7 +61,7 @@ export default function ChannelData() {
       setMessages(response.data);
 
     } catch (error) {
-      console.error('Erro ao enviar mensagem:', error);
+      console.error('Error sending message:', error);
     }
   }
 }
@@ -83,7 +88,7 @@ export default function ChannelData() {
             <InputWrapper>
                 <Input
                     type="text"
-                    placeholder="Digite uma mensagem e aperte Enter"
+                    placeholder={t("Digite uma mensagem e aperte Enter")}
                     value={inputText}
                     onChange={(e) => setInputText(e.target.value)}
                     onKeyDown={handleKeyDown}

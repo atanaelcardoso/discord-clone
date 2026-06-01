@@ -1,8 +1,13 @@
+import '../../utils/i18n'
+import { useTranslation } from 'react-i18next';
+
 import { Container, 
         HashtagIcon,
         Title,
         Separator,
-        Description } from './styles';
+        Description,
+        LanguageArea,     
+        LanguageButton } from './styles'; 
 
 export interface ChannelInfoProps {
     title?: string;
@@ -10,6 +15,12 @@ export interface ChannelInfoProps {
 }
 
 export default function ChannelInfo({ title, description }: ChannelInfoProps) {
+    const { t, i18n } = useTranslation();
+
+    const changeLanguage = (lng: string) => {
+        i18n.changeLanguage(lng);
+    };
+        
     return (
         <Container>
             <HashtagIcon />
@@ -18,7 +29,22 @@ export default function ChannelInfo({ title, description }: ChannelInfoProps) {
 
             <Separator />
             
-            <Description>{description} || 'Nenhuma descrição'</Description>
+            <Description>{description || t('Nenhuma descrição')}</Description>
+
+            <LanguageArea>
+                <LanguageButton 
+                    onClick={() => changeLanguage('pt')}
+                    isActive={i18n.language.startsWith('pt')}
+                >
+                    PT
+                </LanguageButton>
+                <LanguageButton 
+                    onClick={() => changeLanguage('en')}
+                    isActive={i18n.language.startsWith('en')}
+                >
+                    EN
+                </LanguageButton>
+            </LanguageArea>
         </Container>
     )
 };

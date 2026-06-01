@@ -1,6 +1,9 @@
 import { useEffect, useState } from 'react';
 import api from '../../Services/api'; 
 
+import '../../utils/i18n'
+import { useTranslation } from 'react-i18next';
+
 import { 
     Container, 
     Profiler, 
@@ -17,6 +20,8 @@ interface User {
 }
 
 export default function UserInfo() {
+  const { t } = useTranslation();
+
   const [user, setUser] = useState<User | null>(null);
   const [loading, setLoading] = useState(true);
 
@@ -29,7 +34,7 @@ export default function UserInfo() {
           setUser(response.data[0]);
         }
       } catch (error) {
-        console.error('Erro ao buscar usuário:', error);
+        console.error('Error searching for user:', error);
       } finally {
         setLoading(false);
       }
@@ -42,7 +47,7 @@ export default function UserInfo() {
     return (
       <Container>
         <Profiler>
-          <UserData><strong>Carregando...</strong></UserData>
+          <UserData><strong>{t('Carregando...')}</strong></UserData>
         </Profiler>
       </Container>
     );
@@ -52,7 +57,7 @@ export default function UserInfo() {
     return (
       <Container>
         <Profiler>
-          <UserData><strong>Nenhum usuário</strong></UserData>
+          <UserData><strong>{t('Nenhum usuário')}</strong></UserData>
         </Profiler>
       </Container>
     );

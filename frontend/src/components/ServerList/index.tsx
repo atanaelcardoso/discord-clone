@@ -19,7 +19,7 @@ const ServerList: React.FC = () => {
                 setServers(response.data);
             })
             .catch(error => {
-                console.error("Erro ao carregar a lista de servidores:", error);
+                console.error("Error loading server list:", error);
             });
     }, []);
 
