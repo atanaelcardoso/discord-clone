@@ -1,6 +1,9 @@
 import { useEffect, useState } from 'react';
 import api from '../../Services/api';
 
+import '../../utils/i18n'
+import { useTranslation } from 'react-i18next';
+
 import { Container, Role, User, Avatar } from './styles';
 
 interface UserBackend {
@@ -29,6 +32,8 @@ function UserRow({ nickname, isBot, avatarUrl }: UserProps) {
 }
 
 export default function UserList() {
+    const { t } = useTranslation();
+
     const [users, setUsers] = useState<UserBackend[]>([]);
     const [loading, setLoading] = useState(true);
 
@@ -38,7 +43,7 @@ export default function UserList() {
                 const response = await api.get<UserBackend[]>('/users');
                 setUsers(response.data);
             } catch (error) {
-                console.error('Error ao buscar usuários:',error);
+                console.error('Error retrieving users:',error);
             } finally {
                 setLoading(false);
             }
@@ -49,17 +54,17 @@ export default function UserList() {
     if (loading) {
         return (
             <Container>
-                <Role>Carregando usuários...</Role>
+                <Role>{t('Carregando usuários...')}</Role>
             </Container>
         );
     }
 
     return (
         <Container>
-            <Role>Disponível - {users.length}</Role>
+            <Role>{t('Disponível')} - {users.length}</Role>
 
             {users.length === 0 ? (
-                <p style= {{ color: 'var(--gray)', 'padding': '0 16px' }}>Nenhum usuário disponível.</p>
+                <p style= {{ color: 'var(--gray)', 'padding': '0 16px' }}>{t('Nenhum usuário disponível.')}</p>
             ) : (
                 users.map(user => (
                     <UserRow
@@ -70,7 +75,7 @@ export default function UserList() {
                     />
                 ))
             )}
-            <Role>Offline - 0</Role>
+            <Role>{t('Offline')} - 0</Role>
         </Container>    
     );
 }

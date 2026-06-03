@@ -7,7 +7,7 @@ export const Container = styled.div`
     display: flex;
     align-items: center;
 
-    padding: 0 17px;;
+    padding: 0 17px;
     background-color: var(--primary);
 
     box-shadow: rgba(0, 0, 0, 0.2) 0px 1px 0px 0px;
@@ -43,4 +43,37 @@ export const Separator = styled.div`
 export const Description = styled.span`
     font-size: 15px;
     color: var(--gray);
+`;
+
+export const LanguageArea = styled.div`
+    display: flex;
+    gap: 8px;
+    margin-left: auto; /* Empurra os botões para o canto direito */
+    align-items: center;
+`;
+
+interface LanguageButtonProps {
+    isActive?: boolean;
+}
+
+export const LanguageButton = styled.button<LanguageButtonProps>`
+    background: ${(props) => (props.isActive ? 'var(--quaternary)' : 'transparent')};
+    color: ${(props) => (props.isActive ? 'var(--white)' : 'var(--gray)')};
+    border: 1px solid ${(props) => (props.isActive ? 'var(--discord)' : 'var(--quaternary)')};
+    
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: ${(props) => (props.isActive ? 'bold' : 'normal')};
+    cursor: pointer;
+    transition: all 0.15s ease-in-out;
+
+    &:hover {
+        background-color: var(--quaternary);
+        color: var(--white);
+    }
+
+    &:active {
+        transform: scale(0.95);
+    }
 `;

@@ -2,8 +2,12 @@ import { useEffect, useState } from 'react';
 import api from '../../Services/api'; 
 import { Container, Title, ExpandIcon } from './styles';
 
+import '../../utils/i18n'
+import { useTranslation } from 'react-i18next';
+  
 export default function ServerName() {
-  const [serverName, setServerName] = useState<string>('Carregando...');
+  const { t } = useTranslation();
+  const [serverName, setServerName] = useState<string>('Loading...');
 
   useEffect(() => {
     async function fetchServerName() {
@@ -11,13 +15,13 @@ export default function ServerName() {
         const response = await api.get('/servers');
         
         if (Array.isArray(response.data)) {
-          setServerName(response.data[0]?.name || 'Servidor Central');
+          setServerName(response.data[0]?.name || t('Servidor Central'));
         } else {
-          setServerName(response.data?.name || 'Servidor Central');
+          setServerName(response.data?.name || t('Servidor Central'));
         }
       } catch (error) {
-        console.error('Erro na requisição da API:', error);
-        setServerName('Servidor Offline'); 
+        console.error('API request error:', error);
+        setServerName(t('Servidor Offline')); 
       }
     }
 

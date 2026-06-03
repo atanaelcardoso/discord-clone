@@ -1,6 +1,7 @@
 import 'dotenv/config'; 
 import express from 'express';
 import cors from 'cors';
+//import { prisma } from './database.js';
 import { PrismaClient } from '@prisma/client';
 
 const prisma = new PrismaClient();
@@ -194,4 +195,4 @@ app.delete('/roles/:id', async (req, res) => {
 });
 
 const PORT = 3333;
-app.listen(PORT, () => console.log('🚀 Backend Full CRUD rodando na porta 3333'));
+app.listen(PORT, () => console.log('🚀 Full CRUD backend running on port 3333'));
