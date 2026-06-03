@@ -28,6 +28,6 @@
     "start": "node dist/server.js",
     "db:push": "npx prisma db push",
     "db:generate": "npx prisma generate",
-    "seed": "npx tsx prisma/seed.ts"
+    "db:seed": "npx tsx prisma/seed.ts"
   }
 }

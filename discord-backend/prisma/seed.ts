@@ -34,9 +34,8 @@ async function seed() {
     data: {
       id: 1,
       name: 'Comunidade TypeScript',
-      inviteCode: 'ts-community-2026',
+      //inviteCode: 'ts-community-2026',
       ownerId: john.id, 
-
       roles: {
         create: [
           { name: 'Admin', color: '#FF0000' },
@@ -44,14 +43,12 @@ async function seed() {
           { name: 'Dev', color: '#0000FF' }
         ]
       },
-
       channels: {
         create: [
           {
             id: 1,
             name: 'boas-vindas',
             type: 'TEXT',
-            
             messages: {
               create: [
                 { content: 'Bem-vindo ao servidor de TypeScript!', userId: john.id },
@@ -85,15 +82,13 @@ async function seed() {
     data: {
       id: 2,
       name: 'Lobby dos Jogos',
-      inviteCode: 'lobby-games',
+      //inviteCode: 'lobby-games',
       ownerId: jane.id,
-
       roles: {
         create: [
           { name: 'MembroVIP', color: '#FFD700' }
         ]
       },
-
       channels: {
         create: [
           {
