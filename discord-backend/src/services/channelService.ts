@@ -1,4 +1,4 @@
-import { prisma } from '../Database/database.js';
+import { prisma } from '../database/database.js';
 
 export class ChannelService {
   public async getAll() {

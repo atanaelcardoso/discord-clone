@@ -1,12 +1,13 @@
 import { Router } from 'express';
-import { UserController } from '../Controllers/UserController.js';
+import { RoleController } from '../controllers/roleController.js';
 
 const router = Router();
-const controller = new UserController();
+const controller = new RoleController();
 
-router.get('/', controller.get);
+router.get('/:serverId', controller.getByServer);
 router.post('/', controller.post);
 router.put('/:id', controller.put);
+router.patch('/:id', controller.patch);
 router.delete('/:id', controller.delete);
 
 export default router;

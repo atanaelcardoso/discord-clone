@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { RoleService } from '../Services/RoleService.js';
+import { RoleService } from '../services/roleService.js';
 
 const roleService = new RoleService();
 

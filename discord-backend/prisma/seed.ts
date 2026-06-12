@@ -1,4 +1,4 @@
-import { prisma } from '../src/database.js';
+import { prisma } from '../src/database/database';
 
 async function seed() {
   console.log('Clearing database...');

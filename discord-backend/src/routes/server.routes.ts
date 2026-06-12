@@ -1,12 +1,13 @@
 import { Router } from 'express';
-import { MessageController } from '../Controllers/MessageController.js';
+import { ServerController } from '../controllers/serverController.js';
 
 const router = Router();
-const controller = new MessageController();
+const controller = new ServerController();
 
-router.get('/:channelId', controller.getByChannel);
+router.get('/', controller.get);
 router.post('/', controller.post);
 router.put('/:id', controller.put);
+router.patch('/:id', controller.patch);
 router.delete('/:id', controller.delete);
 
 export default router;

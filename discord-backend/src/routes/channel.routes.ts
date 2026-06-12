@@ -1,10 +1,10 @@
 import { Router } from 'express';
-import { RoleController } from '../Controllers/RoleController.js';
+import { ChannelController } from '../controllers/channelController.js';
 
 const router = Router();
-const controller = new RoleController();
+const controller = new ChannelController();
 
-router.get('/:serverId', controller.getByServer);
+router.get('/', controller.get);
 router.post('/', controller.post);
 router.put('/:id', controller.put);
 router.patch('/:id', controller.patch);
