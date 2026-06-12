@@ -1,31 +1,33 @@
-import { prisma } from '../database/database.js';
+import { ChannelRepository } from '../repository/channelRepository.js';
+
+const channelRepository = new ChannelRepository();
 
 export class ChannelService {
   public async getAll() {
-    return await prisma.channel.findMany();
+    return await channelRepository.findAll();
   }
 
   public async create(body: any) {
-    return await prisma.channel.create({
-      data: { name: body.name, serverId: Number(body.serverId), type: body.type || 'TEXT' }
-    });
+    const name = body.name;
+    const serverId = Number(body.serverId);
+    const type = body.type || 'TEXT';
+    return await channelRepository.create(name, serverId, type);
   }
 
-  public async update(id: number, body: any) {
-    return await prisma.channel.update({
-      where: { id },
-      data: { name: body.name, type: body.type }
-    });
+  public async update(id: number, body: { name: string, type: string }) {
+    try {
+      const channelUpdated = await channelRepository.update(id, body.name, body.type);
+      return channelUpdated;
+    } catch (error) {
+      throw new Error(`Error on updated the channel: ${(error as Error).message}`);
+    }
   }
 
   public async patch(id: number, body: any) {
-    return await prisma.channel.update({
-      where: { id },
-      data: { name: body.name }
-    });
+    return await channelRepository.patch(id, body.name);
   }
 
   public async delete(id: number) {
-    return await prisma.channel.delete({ where: { id } });
+    await channelRepository.delete(id);
   }
 }

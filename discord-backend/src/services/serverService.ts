@@ -1,31 +1,32 @@
-import { prisma } from '../database/database.js';
+import { ServerRepository } from '../repository/serverRepository.js';
+
+const serverRepository = new ServerRepository();
 
 export class ServerService {
   public async getAll() {
-    return await prisma.server.findMany({ include: { channels: true } });
+    return await serverRepository.findAll();
   }
 
   public async create(body: any) {
-    return await prisma.server.create({
-      data: { name: body.name, ownerId: Number(body.ownerId) }
-    });
+    const name = body.name;
+    const ownerId = Number(body.ownerId);
+    return await serverRepository.create(name, ownerId);
   }
 
   public async update(id: number, body: any) {
-    return await prisma.server.update({
-      where: { id },
-      data: { name: body.name, icon: body.icon }
+    return await serverRepository.update(id, {
+      name: body.name,
+      icon: body.icon
     });
   }
 
   public async patch(id: number, body: any) {
-    return await prisma.server.update({
-      where: { id },
-      data: { name: body.name }
+    return await serverRepository.update(id, {
+      name: body.name
     });
   }
 
   public async delete(id: number) {
-    return await prisma.server.delete({ where: { id } });
+    await serverRepository.delete(id);
   }
 }

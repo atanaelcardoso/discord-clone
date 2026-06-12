@@ -1,27 +1,24 @@
-import { prisma } from '../database/database.js';
+import { MessageRepository } from '../repository/messageRepository.js';
+
+const messageRepository = new MessageRepository();
 
 export class MessageService {
   public async getByChannel(channelId: number) {
-    return await prisma.message.findMany({
-      where: { channelId },
-      include: { user: true }
-    });
+    return await messageRepository.findByChannel(channelId);
   }
 
   public async create(body: any) {
-    return await prisma.message.create({
-      data: { content: body.content, userId: Number(body.userId), channelId: Number(body.channelId) }
-    });
+    const content = body.content;
+    const userId = Number(body.userId);
+    const channelId = Number(body.channelId);
+    return await messageRepository.create(content, userId, channelId);
   }
 
   public async update(id: number, body: any) {
-    return await prisma.message.update({
-      where: { id },
-      data: { content: body.content }
-    });
+    return await messageRepository.update(id, body.content);
   }
 
   public async delete(id: number) {
-    return await prisma.message.delete({ where: { id } });
+    await messageRepository.delete(id);
   }
 }
