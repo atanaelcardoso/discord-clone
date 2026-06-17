@@ -1,5 +1,6 @@
 import { Request, Response } from 'express';
-import { MessageService } from '../services/messagemService.js';
+import { MessageService } from '../../../domain/message/useCase/messageService.js';
+
 
 const messageService = new MessageService();
 

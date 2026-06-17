@@ -1,4 +1,5 @@
-import { ChannelRepository } from '../repository/channelRepository.js';
+import { ChannelRepository } from '../../../infra/repository/channelRepository.js';
+import { Channel } from '../entity/channel.js';
 
 const channelRepository = new ChannelRepository();
 
@@ -7,14 +8,14 @@ export class ChannelService {
     return await channelRepository.findAll();
   }
 
-  public async create(body: any) {
+  public async create(body: Channel) {
     const name = body.name;
     const serverId = Number(body.serverId);
     const type = body.type || 'TEXT';
     return await channelRepository.create(name, serverId, type);
   }
 
-  public async update(id: number, body: { name: string, type: string }) {
+  public async update(id: number, body: Channel) {
     try {
       const channelUpdated = await channelRepository.update(id, body.name, body.type);
       return channelUpdated;
@@ -23,7 +24,7 @@ export class ChannelService {
     }
   }
 
-  public async patch(id: number, body: any) {
+  public async patch(id: number, body: Channel) {
     return await channelRepository.patch(id, body.name);
   }
 

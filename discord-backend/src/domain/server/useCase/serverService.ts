@@ -1,4 +1,5 @@
-import { ServerRepository } from '../repository/serverRepository.js';
+import { ServerRepository } from '../../../infra/repository/serverRepository.js';
+import { Server } from '../entity/server.js';
 
 const serverRepository = new ServerRepository();
 
@@ -7,20 +8,20 @@ export class ServerService {
     return await serverRepository.findAll();
   }
 
-  public async create(body: any) {
+  public async create(body: Server) {
     const name = body.name;
     const ownerId = Number(body.ownerId);
     return await serverRepository.create(name, ownerId);
   }
 
-  public async update(id: number, body: any) {
+  public async update(id: number, body: Server) {
     return await serverRepository.update(id, {
       name: body.name,
       icon: body.icon
     });
   }
 
-  public async patch(id: number, body: any) {
+  public async patch(id: number, body: Server) {
     return await serverRepository.update(id, {
       name: body.name
     });
