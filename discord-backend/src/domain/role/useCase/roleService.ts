@@ -1,4 +1,4 @@
-import { RoleRepository } from '../../infra/repository/roleRepository.js';
+import { RoleRepository } from '../../../infra/repository/roleRepository.js';
 
 const roleRepository = new RoleRepository();
 

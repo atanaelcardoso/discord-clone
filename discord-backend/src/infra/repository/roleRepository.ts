@@ -1,20 +1,5 @@
+import { Role } from '../../domain/role/entity/role.js';
 import { prisma } from '../database/database.js';
-
-export class Role {
-  public id: number;
-  public name: string;
-  public color: string;
-  public serverId: number;
-  public hoist: boolean;
-
-  constructor(props: Role) {
-    this.id = props.id;
-    this.name = props.name;
-    this.color = props.color;
-    this.serverId = props.serverId;
-    this.hoist = props.hoist;
-  }
-}
 
 export class RoleRepository {
   public async findByServer(serverId: number): Promise<Role[]> {
