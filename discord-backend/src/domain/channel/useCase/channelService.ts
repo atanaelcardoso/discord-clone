@@ -1,5 +1,5 @@
-import { ChannelRepository } from '../../../infra/repository/channelRepository.js';
-import { Channel } from '../entity/channel.js';
+import { ChannelRepository } from '../../../infra/repository/channelRepository.ts';
+import { Channel } from '../entity/channel.ts';
 
 const channelRepository = new ChannelRepository();
 

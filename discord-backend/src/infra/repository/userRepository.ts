@@ -1,5 +1,6 @@
-import { User } from '../../domain/user/entity/user.js';
-import { prisma } from '../database/database.js';
+import { User } from '../../domain/user/entity/user.ts';
+import { prisma } from '../database/database.ts';
+
 export class UserRepository {
   public async findAll(): Promise<User[]> {
     const users = await prisma.user.findMany();

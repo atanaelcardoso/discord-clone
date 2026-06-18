@@ -1,6 +1,6 @@
-import { prisma } from '../database/database.js';
-import { Channel } from '../../domain/channel/entity/channel.js';
-import { ChannelType } from '../../domain/channel/entity/channel.js';
+import { prisma } from '../database/database.ts';
+import { Channel } from '../../domain/channel/entity/channel.ts';
+import { ChannelType } from '../../domain/channel/entity/channel.ts';
 
 
 export class ChannelRepository {

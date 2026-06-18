@@ -1,5 +1,5 @@
-import { MessageRepository } from "../../../infra/repository/messageRepository.js";
-import { Message } from "../entity/message.js";
+import { MessageRepository } from "../../../infra/repository/messageRepository.ts";
+import { Message } from "../entity/message.ts";
 
 
 const messageRepository = new MessageRepository();

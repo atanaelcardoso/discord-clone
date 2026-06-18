@@ -1,5 +1,5 @@
-import { Role } from '../../domain/role/entity/role.js';
-import { prisma } from '../database/database.js';
+import { Role } from '../../domain/role/entity/role.ts';
+import { prisma } from '../database/database.ts';
 
 export class RoleRepository {
   public async findByServer(serverId: number): Promise<Role[]> {

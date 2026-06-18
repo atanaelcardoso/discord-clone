@@ -1,5 +1,5 @@
-import { RoleRepository } from '../../../infra/repository/roleRepository.js';
-import { Role } from '../entity/role.js';
+import { RoleRepository } from '../../../infra/repository/roleRepository.ts';
+import { Role } from '../entity/role.ts';
 
 const roleRepository = new RoleRepository();
 

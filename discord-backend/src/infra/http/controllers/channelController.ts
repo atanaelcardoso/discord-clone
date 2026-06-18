@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { ChannelService } from '../../../domain/channel/useCase/channelService.js';
+import { ChannelService } from '../../../domain/channel/useCase/channelService.ts';
 
 const channelService = new ChannelService();
 

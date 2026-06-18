@@ -1,9 +1,9 @@
 import { Router } from 'express';
-import userRoutes from './user.routes.js';
-import serverRoutes from './server.routes.js';
-import channelRoutes from './channel.routes.js';
-import messageRoutes from './message.routes.js';
-import roleRoutes from './role.routes.js';
+import userRoutes from './user.routes.ts';
+import serverRoutes from './server.routes.ts';
+import channelRoutes from './channel.routes.ts';
+import messageRoutes from './message.routes.ts';
+import roleRoutes from './role.routes.ts';
 
 const appRoutes = Router();
 

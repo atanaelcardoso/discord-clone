@@ -1,5 +1,5 @@
-import { ServerRepository } from '../../../infra/repository/serverRepository.js';
-import { Server } from '../entity/server.js';
+import { ServerRepository } from '../../../infra/repository/serverRepository.ts';
+import { Server } from '../entity/server.ts';
 
 const serverRepository = new ServerRepository();
 

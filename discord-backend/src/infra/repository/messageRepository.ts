@@ -1,5 +1,5 @@
-import { prisma } from '../database/database.js';
-import { Message } from '../../domain/message/entity/message.js';
+import { prisma } from '../database/database.ts';
+import { Message } from '../../domain/message/entity/message.ts';
 
 export class MessageRepository {
   public async findByChannel(channelId: number): Promise<Message[]> {

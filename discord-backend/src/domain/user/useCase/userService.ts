@@ -1,5 +1,5 @@
-import { UserRepository } from "../../../infra/repository/userRepository.js";
-import { User } from "../entity/user.js";
+import { UserRepository } from "../../../infra/repository/userRepository.ts";
+import { User } from "../entity/user.ts";
 
 const userRepository = new UserRepository();
 

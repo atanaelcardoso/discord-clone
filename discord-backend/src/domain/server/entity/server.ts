@@ -1,4 +1,4 @@
-import { Channel } from "../../channel/entity/channel.js";
+import { Channel } from "../../channel/entity/channel.ts";
 
 export interface Server {
   id: number;
