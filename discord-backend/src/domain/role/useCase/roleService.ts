@@ -1,4 +1,5 @@
 import { RoleRepository } from '../../../infra/repository/roleRepository.js';
+import { Role } from '../entity/role.js';
 
 const roleRepository = new RoleRepository();
 
@@ -7,7 +8,7 @@ export class RoleService {
     return await roleRepository.findByServer(serverId);
   }
 
-  public async create(body: any) {
+  public async create(body: Role) {
     const name = body.name;
     const color = body.color || '#8a8c90';
     const serverId = Number(body.serverId);
@@ -16,7 +17,7 @@ export class RoleService {
     return await roleRepository.create(name, color, serverId, hoist);
   }
 
-  public async update(id: number, body: any) {
+  public async update(id: number, body: Role) {
     return await roleRepository.update(id, {
       name: body.name,
       color: body.color,
@@ -24,7 +25,7 @@ export class RoleService {
     });
   }
 
-  public async patch(id: number, body: any) {
+  public async patch(id: number, body: Role) {
     return await roleRepository.patch(id, {
       name: body.name,
       color: body.color

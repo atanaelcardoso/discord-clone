@@ -1,4 +1,5 @@
 import { UserRepository } from "../../../infra/repository/userRepository.js";
+import { User } from "../entity/user.js";
 
 const userRepository = new UserRepository();
 
@@ -7,7 +8,7 @@ export class UserService {
     return await userRepository.findAll();
   }
 
-  public async create(body: any) {
+  public async create(body: User) {
     const nickname = body.nickname;
     const avatar = body.avatar || null;
     const isBot = body.isBot || false;
@@ -17,7 +18,7 @@ export class UserService {
     return await userRepository.create({ nickname, avatar, isBot, email, password });
   }
 
-  public async update(id: number, body: any) {
+  public async update(id: number, body: User) {
     return await userRepository.update(id, {
       nickname: body.nickname,
       avatar: body.avatar,
