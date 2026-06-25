@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 import api from '../../Services/api';
-import ChannelButton from '../ChannelButton';
+import ChannelButton from '../../infra/domain/channelBuntton/useCase/channelBunttonServer';
 
-import '../../utils/i18n'
+import '../../infra/i18n/i18n'
 import { useTranslation } from 'react-i18next';
 
 import { Container, Category, AddCategoryIcon } from './styles'

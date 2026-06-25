@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import api from '../../Services/api';
 
-import '../../utils/i18n'
+import '../../infra/i18n/i18n'
 import { useTranslation } from 'react-i18next';
 
 import { Container, Role, User, Avatar } from './styles';

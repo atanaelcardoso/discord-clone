@@ -1,5 +1,5 @@
 import Layout from "./components/Layout";
-import GlobalStyles from "./styles/GlobalStyles";
+import GlobalStyles from "./contexts/GlobalStyles";
 
 function App() {
   return (
