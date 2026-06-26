@@ -1,7 +1,7 @@
 export interface UserBackend {
     id: number;
     nickname: string;
-    avatar: string;
+    avatar: string ;
     isBot: boolean;
 }
 export interface UserProps {

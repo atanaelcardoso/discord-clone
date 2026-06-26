@@ -53,18 +53,18 @@ export const LanguageArea = styled.div`
 `;
 
 interface LanguageButtonProps {
-    isActive?: boolean;
+    $isActive?: boolean;
 }
 
 export const LanguageButton = styled.button<LanguageButtonProps>`
-    background: ${(props) => (props.isActive ? 'var(--quaternary)' : 'transparent')};
-    color: ${(props) => (props.isActive ? 'var(--white)' : 'var(--gray)')};
-    border: 1px solid ${(props) => (props.isActive ? 'var(--discord)' : 'var(--quaternary)')};
+    background: ${(props) => (props.$isActive ? 'var(--quaternary)' : 'transparent')};
+    color: ${(props) => (props.$isActive ? 'var(--white)' : 'var(--gray)')};
+    border: 1px solid ${(props) => (props.$isActive ? 'var(--discord)' : 'var(--quaternary)')};
     
     padding: 4px 8px;
     border-radius: 4px;
     font-size: 12px;
-    font-weight: ${(props) => (props.isActive ? 'bold' : 'normal')};
+    font-weight: ${(props) => (props.$isActive ? 'bold' : 'normal')};
     cursor: pointer;
     transition: all 0.15s ease-in-out;
 

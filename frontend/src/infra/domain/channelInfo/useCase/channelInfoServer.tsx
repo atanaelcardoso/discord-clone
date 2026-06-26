@@ -32,13 +32,13 @@ export default function ChannelInfo({ title, description }: ChannelInfoProps) {
             <LanguageArea>
                 <LanguageButton 
                     onClick={() => changeLanguage('pt')}
-                    isActive={i18n.language.startsWith('pt')}
+                    $isActive={i18n.language.startsWith('pt')}
                 >
                     Português(BR)
                 </LanguageButton>
                 <LanguageButton 
                     onClick={() => changeLanguage('en')}
-                    isActive={i18n.language.startsWith('en')}
+                    $isActive={i18n.language.startsWith('en')}
                 >
                     English(US)
                 </LanguageButton>

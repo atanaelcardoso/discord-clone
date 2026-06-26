@@ -6,7 +6,17 @@
 
 // import { Container, Role, User, Avatar } from './styles';
 
-
+// interface UserBackend {
+//     id: number;
+//     nickname: string;
+//     avatar: string ;
+//     isBot: boolean;
+// }
+// interface UserProps {
+//     nickname: string;
+//     isBot?: boolean;
+//     avatarUrl?: string;
+// }
 
 // function UserRow({ nickname, isBot, avatarUrl }: UserProps) {
 //     return (

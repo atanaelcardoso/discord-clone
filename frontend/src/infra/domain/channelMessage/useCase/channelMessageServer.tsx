@@ -1,5 +1,6 @@
 import { Container, Avatar, Message, Header, Content } from '../../../../components/ChannelMessage/styles';
 import type { Props } from '../entity/channelMessage';
+export {Mention} from '../../../../components/ChannelMessage/styles'
 
 export default function ChannelMessage({ 
     author, 
