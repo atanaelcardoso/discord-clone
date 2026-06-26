@@ -1,6 +1,6 @@
 import { useEffect, useState, useRef, type KeyboardEvent } from 'react';
 import api from '../../../../Services/api';
-import ChannelMessage from '../../../../components/ChannelMessage';
+import ChannelMessage from '../../channelMessage/useCase/channelMessageServer';
 
 import '../../../i18n/i18n'
 import { useTranslation } from 'react-i18next';

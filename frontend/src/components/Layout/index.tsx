@@ -2,13 +2,13 @@ import React from 'react';
 
 import { Grid } from './styles'
 
-import ServerList from '../ServerList';
-import ServerName from '../ServerName';
-import ChannelInfo from '../ChannelInfo';
-import ChannelList from '../ChannelList';
-import UserInfo from '../UserInfo';
+import ServerList from '../../infra/domain/serverList/useCase/serverListServer';
+import ServerName from '../../infra/domain/serverName/useCase/serverNameServer';
+import ChannelInfo from '../../infra/domain/channelInfo/useCase/channelInfoServer';
+import ChannelList from '../../infra/domain/channelList/useCase/channelListServer';
+import UserInfo from '../../infra/domain/userInfo/useCase/userinfo';
 import ChannelData from '../../infra/domain/channelData/useCase/channelDataServer';
-import UserList from '../UserList';
+import UserList from '../../infra/domain/userList/useCase/userListServer';
 
 const Layout: React.FC = () => {
     return (

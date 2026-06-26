@@ -1,50 +1,47 @@
-import '../../infra/i18n/i18n'
-import { useTranslation } from 'react-i18next';
+// import '../../infra/i18n/i18n'
+// import { useTranslation } from 'react-i18next';
 
-import { Container, 
-        HashtagIcon,
-        Title,
-        Separator,
-        Description,
-        LanguageArea,     
-        LanguageButton } from './styles'; 
+// import { Container, 
+//         HashtagIcon,
+//         Title,
+//         Separator,
+//         Description,
+//         LanguageArea,     
+//         LanguageButton } from './styles'; 
 
-export interface ChannelInfoProps {
-    title?: string;
-    description?: string;
-}
 
-export default function ChannelInfo({ title, description }: ChannelInfoProps) {
-    const { t, i18n } = useTranslation();
 
-    const changeLanguage = (lng: string) => {
-        i18n.changeLanguage(lng);
-    };
+// export default function ChannelInfo({ title, description }: ChannelInfoProps) {
+//     const { t, i18n } = useTranslation();
+
+//     const changeLanguage = (lng: string) => {
+//         i18n.changeLanguage(lng);
+//     };
         
-    return (
-        <Container>
-            <HashtagIcon />
+//     return (
+//         <Container>
+//             <HashtagIcon />
 
-            <Title>{title}</Title>
+//             <Title>{title}</Title>
 
-            <Separator />
+//             <Separator />
             
-            <Description>{description || t('Nenhuma descrição')}</Description>
+//             <Description>{description || t('Nenhuma descrição')}</Description>
 
-            <LanguageArea>
-                <LanguageButton 
-                    onClick={() => changeLanguage('pt')}
-                    isActive={i18n.language.startsWith('pt')}
-                >
-                    Português(BR)
-                </LanguageButton>
-                <LanguageButton 
-                    onClick={() => changeLanguage('en')}
-                    isActive={i18n.language.startsWith('en')}
-                >
-                    English(US)
-                </LanguageButton>
-            </LanguageArea>
-        </Container>
-    )
-};
+//             <LanguageArea>
+//                 <LanguageButton 
+//                     onClick={() => changeLanguage('pt')}
+//                     isActive={i18n.language.startsWith('pt')}
+//                 >
+//                     Português(BR)
+//                 </LanguageButton>
+//                 <LanguageButton 
+//                     onClick={() => changeLanguage('en')}
+//                     isActive={i18n.language.startsWith('en')}
+//                 >
+//                     English(US)
+//                 </LanguageButton>
+//             </LanguageArea>
+//         </Container>
+//     )
+// };
