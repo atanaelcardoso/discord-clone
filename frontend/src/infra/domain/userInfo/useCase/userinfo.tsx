@@ -1,6 +1,3 @@
-import { useEffect, useState } from 'react';
-import api from '../../../../Services/api';
-
 import '../../../i18n/i18n'
 import { useTranslation } from 'react-i18next';
 
@@ -14,32 +11,14 @@ import {
     HeadphoneIcon,
     SettingsIcon
 } from '../../../../components/UserInfo/styles';
-import type { User } from '../entity/userInfo';
+import { UserInfoHooks } from '../../../../hooks/userInfo/userInfoHooks';
 
 
 export default function UserInfo() {
     const { t } = useTranslation();
+    const { user, loading} = UserInfoHooks();
 
-    const [user, setUser] = useState<User | null>(null);
-    const [loading, setLoading] = useState(true);
-
-    useEffect(() => {
-        async function fetchUser() {
-            try {
-                const response = await api.get<User[]>('/users');
-
-                if (response.data.length > 0) {
-                    setUser(response.data[0]);
-                }
-            } catch (error) {
-                console.error('Error searching for user:', error);
-            } finally {
-                setLoading(false);
-            }
-        }
-
-        fetchUser();
-    }, []);
+    
 
     if (loading) {
         return (

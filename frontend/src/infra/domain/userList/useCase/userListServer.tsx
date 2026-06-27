@@ -1,5 +1,5 @@
 import { useTranslation } from 'react-i18next';
-import { useUserList } from '../../../../hooks/userList/userListHooks';
+import { userListHooks } from '../../../../hooks/userList/userListHooks';
 import { Container, Role, User, Avatar } from '../../../../components/UserList/styles';
 import type { UserProps } from '../entity/userList';
 
@@ -18,7 +18,7 @@ function UserRow({ nickname, isBot, avatarUrl }: UserProps) {
 
 export default function UserList() {
   const { t } = useTranslation();
-  const { users, loading } = useUserList();
+  const { users, loading } = userListHooks();
 
   if (loading) {
     return (

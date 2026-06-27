@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import type { UserBackend } from '../../infra/domain/userList/entity/userList';
 import api from '../../Services/api';
 
-export function useUserList() {
+export function userListHooks() {
   const [users, setUsers] = useState<UserBackend[]>([]);
   const [loading, setLoading] = useState(true);
 
