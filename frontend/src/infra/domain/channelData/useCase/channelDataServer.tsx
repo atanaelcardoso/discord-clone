@@ -3,9 +3,10 @@ import '../../../i18n/i18n'
 import { useTranslation } from 'react-i18next';
 import { Container, Message, InputWrapper, Input, InputIcon } from '../../../../components/ChannelData/styles';
 import ChannelDataHooks from '../../../../hooks/channelData/channelDataHooks';
+import { formatDate } from '../../../../utils/formatterDate';
 
 export default function ChannelData() {
-    const { t } = useTranslation();
+    const { t, i18n } = useTranslation();
     const { 
         messages, 
         inputText, 
@@ -24,7 +25,7 @@ export default function ChannelData() {
                         <ChannelMessage
                             key={msg.id}
                             author={msg.user.nickname}
-                            date={new Date(msg.createdAt).toLocaleDateString('pt-BR')}
+                            date={formatDate(msg.createdAt, i18n.language)}
                             content={msg.content}
                             isBot={msg.user.isBot}
                             avatarUrl={msg.user.avatar}
