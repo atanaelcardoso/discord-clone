@@ -1,8 +1,12 @@
 import { useEffect, useRef, useState, type KeyboardEvent } from "react";
 import type { MessageBackend } from "../../infra/domain/channel/entity/channel";
 import api from "../../infra/api/api";
+import type { ChannelRepository } from "../../infra/api/channelRepository";
+import { apiChannelRepository } from "../../infra/domain/channel/useCase/serverChannel";
 
-export default function ChannelDataHooks() {
+const defaultRepositoy = new apiChannelRepository();
+
+export default function ChannelDataHooks(repository: ChannelRepository = defaultRepositoy) {
   const [messages, setMessages] = useState<MessageBackend[]>([]);
   const [inputText, setInputText] = useState('');
   const messagesRef = useRef<HTMLDivElement>(null);
@@ -11,8 +15,9 @@ export default function ChannelDataHooks() {
   useEffect(() => {
     async function fetchMessages() {
         try {
-            const response = await api.get<MessageBackend[]>(`/messages/${currentChannelId}`);
-            setMessages(response.data);
+           //const response = await api.get<MessageBackend[]>(`/messages/${currentChannelId}`);
+           const data = await repository.getChannels();
+           setMessages(data);
         } catch (error) {
             console.error('Error retrieving messages:', error);
         }

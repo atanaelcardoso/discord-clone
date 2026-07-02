@@ -7,12 +7,12 @@ import ChannelMessage from './channelMessageServer';
 
 export default function ChannelData() {
     const { t, i18n } = useTranslation();
-    const { 
-        messages, 
-        inputText, 
-        setInputText, 
-        messagesRef, 
-        handleKeyDown 
+    const {
+        messages,
+        inputText,
+        setInputText,
+        messagesRef,
+        handleKeyDown
     } = ChannelDataHooks();
 
     return (
@@ -24,11 +24,11 @@ export default function ChannelData() {
                     messages.map((msg) => (
                         <ChannelMessage
                             key={msg.id}
-                            author={msg.user.nickname}
+                            author={msg.user?.nickname || "Unknown User"}
                             date={formatDate(msg.createdAt, i18n.language)}
                             content={msg.content}
-                            isBot={msg.user.isBot}
-                            avatarUrl={msg.user.avatar}
+                            isBot={msg.user?.isBot || false}
+                            avatarUrl={msg.user?.avatar || ""}
                         />
                     ))
                 )}

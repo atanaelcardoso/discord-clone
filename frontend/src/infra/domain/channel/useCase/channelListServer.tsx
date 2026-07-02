@@ -6,7 +6,7 @@ import ChannelListHooks from '../../../../hooks/channelList/channelListHooks';
 
 export default function ChannelList() {
     const { t } = useTranslation();
-    const {chanels, loading} = ChannelListHooks();
+    const {channels, loading} = ChannelListHooks();
 
     return (
         <Container>
@@ -17,10 +17,10 @@ export default function ChannelList() {
 
             {loading ? (
                 <p style={{ color: 'var(--gray)', padding: '0 16px', fontSize: '13px' }}>Carregando canais...</p>
-            ) : chanels.length === 0 ? (
+            ) : channels.length === 0 ? (
                 <p style={{ color: 'var(--gray)', padding: '0 16px', fontSize: '13px' }}>Nenhum canal criado</p>
             ) : (
-                chanels.map((channel) => (
+                channels.map((channel) => (
                     <ChannelButton
                         key={channel.id}
                         ChannelName={channel.name}

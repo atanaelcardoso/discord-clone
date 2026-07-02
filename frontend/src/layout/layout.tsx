@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { Grid } from './styles'
 
 import ServerList from '../infra/domain/server/useCase/serverListServer';
@@ -11,10 +9,10 @@ import ChannelData from '../infra/domain/channel/useCase/channelDataServer';
 import UserList from '../infra/domain/user/useCase/userListServer';
 
 
-const Layout: React.FC = () => {
+export default function Layout() {
     return (
         <Grid>
-            <ServerList/>
+            <ServerList />
             <ServerName />
             <ChannelInfo />
             <ChannelList />
@@ -24,5 +22,3 @@ const Layout: React.FC = () => {
         </Grid>
     )
 };
-
-export default Layout;

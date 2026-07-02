@@ -5,6 +5,7 @@ export interface ChannelButtonProps {
 
 export interface MessageBackend {
     id: number;
+    name: string;
     content: string;
     createdAt: string;
     channelId: number;

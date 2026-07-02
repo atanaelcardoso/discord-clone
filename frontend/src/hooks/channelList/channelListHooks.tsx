@@ -1,17 +1,20 @@
 import { useEffect, useState } from "react";
-import type { channel } from "../../infra/domain/channel/entity/channel";
-import api from "../../infra/api/api";
+import type { MessageBackend } from "../../infra/domain/channel/entity/channel";
+import type { ChannelRepository } from "../../infra/api/channelRepository";
+import { apiChannelRepository } from "../../infra/domain/channel/useCase/serverChannel";
 
-export default function ChannelListHooks() {
-    const [chanels, setChannels] = useState<channel[]>([]);
+const defaultRepositoy = new apiChannelRepository();
+
+export default function ChannelListHooks(repository: ChannelRepository = defaultRepositoy) {
+    const [channels, setChannels] = useState<MessageBackend[]>([]);
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         async function fetchChannels() {
             try {
                 // const response = await api.get('/channels');
-                const response = await api.get('/channels');
-                setChannels(response.data);
+                const data = await repository.getChannels();
+                setChannels(data);
             } catch (error) {
                 console.error('Error retrieving backend channels:', error);
             } finally {
@@ -24,6 +27,6 @@ export default function ChannelListHooks() {
 
     return {
         loading,
-        chanels
+        channels
     };
 }
