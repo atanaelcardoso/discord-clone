@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
-import api from "../../Services/api";
+import api from "../../infra/api/api";
 
 export  function ServerNameHooks() {
   const { t } = useTranslation();

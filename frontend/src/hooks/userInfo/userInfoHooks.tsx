@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import type { User } from "../../infra/domain/userInfo/entity/userInfo";
-import api from "../../Services/api";
+import type { User } from "../../infra/domain/user/entity/user";
+import api from "../../infra/api/api";
 
 export function UserInfoHooks() {
 

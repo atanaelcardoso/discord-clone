@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import api from "../../Services/api";
-import type { channel } from "../../infra/domain/channelList/entity/channelList";
+import type { channel } from "../../infra/domain/channel/entity/channel";
+import api from "../../infra/api/api";
 
 export default function ChannelListHooks() {
     const [chanels, setChannels] = useState<channel[]>([]);
@@ -9,6 +9,7 @@ export default function ChannelListHooks() {
     useEffect(() => {
         async function fetchChannels() {
             try {
+                // const response = await api.get('/channels');
                 const response = await api.get('/channels');
                 setChannels(response.data);
             } catch (error) {
@@ -20,5 +21,9 @@ export default function ChannelListHooks() {
 
         fetchChannels();
     }, []);
-    return{ loading, chanels};
+
+    return {
+        loading,
+        chanels
+    };
 }

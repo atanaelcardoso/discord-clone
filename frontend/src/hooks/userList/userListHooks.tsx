@@ -1,15 +1,15 @@
 import { useState, useEffect } from 'react';
-import type { UserBackend } from '../../infra/domain/userList/entity/userList';
-import api from '../../Services/api';
+import type { User } from '../../infra/domain/user/entity/user';
+import api from '../../infra/api/api';
 
 export function userListHooks() {
-  const [users, setUsers] = useState<UserBackend[]>([]);
+  const [users, setUsers] = useState<User[]>([]);
   const [loading, setLoading] = useState(true);
 
    useEffect(() => {
         async function fetchUsers() {
             try {
-                const response = await api.get<UserBackend[]>('/users');
+                const response = await api.get<User[]>('/users');
                 setUsers(response.data);
             } catch (error) {
                 console.error('Error retrieving users:',error);

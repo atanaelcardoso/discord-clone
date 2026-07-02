@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import type { ServerData } from "../../infra/domain/serverList/entity/serverList";
-import api from "../../Services/api";
+import api from "../../infra/api/api";
+import type { ServerData } from "../../infra/domain/server/entity/server";
 
 export function ServerListHooks() {
     const [servers, setServers] = useState<ServerData[]>([]);
