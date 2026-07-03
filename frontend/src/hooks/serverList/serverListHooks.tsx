@@ -1,18 +1,17 @@
 import { useEffect, useState } from "react";
 import type { ServerData } from "../../infra/domain/server/entity/server";
-import type { serverRepository } from "../../infra/api/serverRepository";
-import { apiServerRepository } from "../../infra/domain/server/useCase/serverServer";
+import { suggestionservice } from "../../infra/domain/server/serverServer";
 
-const defaultRepositoy = new apiServerRepository();
+const service = new suggestionservice();
 
-export function ServerListHooks(repository: serverRepository = defaultRepositoy) {
+export function ServerListHooks() {
     const [servers, setServers] = useState<ServerData[]>([]);
 
     useEffect(() => {
         //api.get('/servers')
-        repository.getServer()
+        service.getAll()
             .then(response => {
-                setServers(response);
+                setServers(response.data);
             })
             .catch(error => {
                 console.error("Error loading server list:", error);

@@ -1,11 +1,10 @@
 import { useEffect, useState } from "react";
 import type { User } from "../../infra/domain/user/entity/user";
-import type { UserRepository } from "../../infra/api/userRepository";
-import { ApiUserRepository } from "../../infra/domain/user/useCase/serverUser";
+import { suggestionservice } from "../../infra/domain/user/serverUser";
 
-const defaultRepositoy = new ApiUserRepository();
+const service = new suggestionservice();
 
-export function UserInfoHooks(repository: UserRepository = defaultRepositoy) {
+export function UserInfoHooks() {
     const [user, setUser] = useState<User>();
     const [loading, setLoading] = useState(true);
 
@@ -17,9 +16,9 @@ export function UserInfoHooks(repository: UserRepository = defaultRepositoy) {
                 // if (response.data.length > 0) {
                 //     setUser(response.data[0]);
                 // }
-                const data = await repository.getUsers();
-                if (data.length > 0) {
-                  setUser(data[0]);
+                const response = await service.getAll();
+                if (response.data.length > 0) {
+                    setUser(response.data[0]);
                 }
             } catch (error) {
                 console.error('Error searching for user:', error);
@@ -30,8 +29,8 @@ export function UserInfoHooks(repository: UserRepository = defaultRepositoy) {
 
         fetchUser();
     }, []);
-    
-     return {
+
+    return {
         user,
         loading
     };

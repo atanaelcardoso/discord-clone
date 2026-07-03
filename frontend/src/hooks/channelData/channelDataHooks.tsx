@@ -1,12 +1,11 @@
 import { useEffect, useRef, useState, type KeyboardEvent } from "react";
 import type { MessageBackend } from "../../infra/domain/channel/entity/channel";
 import api from "../../infra/api/api";
-import type { ChannelRepository } from "../../infra/api/channelRepository";
-import { apiChannelRepository } from "../../infra/domain/channel/useCase/serverChannel";
+import { suggestionservice } from "../../infra/domain/channel/serverChannel";
 
-const defaultRepositoy = new apiChannelRepository();
+const service = new suggestionservice();
 
-export default function ChannelDataHooks(repository: ChannelRepository = defaultRepositoy) {
+export default function ChannelDataHooks() {
   const [messages, setMessages] = useState<MessageBackend[]>([]);
   const [inputText, setInputText] = useState('');
   const messagesRef = useRef<HTMLDivElement>(null);
@@ -14,23 +13,23 @@ export default function ChannelDataHooks(repository: ChannelRepository = default
 
   useEffect(() => {
     async function fetchMessages() {
-        try {
-           //const response = await api.get<MessageBackend[]>(`/messages/${currentChannelId}`);
-           const data = await repository.getChannels();
-           setMessages(data);
-        } catch (error) {
-            console.error('Error retrieving messages:', error);
-        }
+      try {
+        //const response = await api.get<MessageBackend[]>(`/messages/${currentChannelId}`);
+        const response = await service.getAll();
+        setMessages(response.data);
+      } catch (error) {
+        console.error('Error retrieving messages:', error);
+      }
     }
 
     fetchMessages();
   }, [currentChannelId]);
 
   useEffect(() => {
-      const div = messagesRef.current;
-      if (div) {
-          div.scrollTop = div.scrollHeight;
-      }
+    const div = messagesRef.current;
+    if (div) {
+      div.scrollTop = div.scrollHeight;
+    }
   }, [messages]);
 
   async function handleKeyDown(event: KeyboardEvent<HTMLInputElement>) {
@@ -38,11 +37,11 @@ export default function ChannelDataHooks(repository: ChannelRepository = default
       try {
         await api.post('/messages', {
           content: inputText,
-          userId: 1, 
-          channelId: currentChannelId 
+          userId: 1,
+          channelId: currentChannelId
         });
         setInputText('');
-        
+
         const response = await api.get<MessageBackend[]>(`/messages/${currentChannelId}`);
         setMessages(response.data);
 
@@ -51,7 +50,7 @@ export default function ChannelDataHooks(repository: ChannelRepository = default
       }
     }
   }
-  
+
   return {
     messages,
     inputText,

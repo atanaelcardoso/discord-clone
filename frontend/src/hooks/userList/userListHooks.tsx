@@ -1,12 +1,11 @@
 import { useState, useEffect } from 'react';
 import type { User } from '../../infra/domain/user/entity/user';
-import type { UserRepository } from '../../infra/api/userRepository';
-import { ApiUserRepository } from '../../infra/domain/user/useCase/serverUser';
+import { suggestionservice } from '../../infra/domain/user/serverUser';
 
-const defaultRepositoy = new ApiUserRepository();
+const service = new suggestionservice();
 
 
-export function userListHooks(repository: UserRepository = defaultRepositoy) {
+export function userListHooks() {
     const [users, setUsers] = useState<User[]>([]);
     const [loading, setLoading] = useState(true);
 
@@ -15,8 +14,8 @@ export function userListHooks(repository: UserRepository = defaultRepositoy) {
             try {
                 // const response = await api.get<User[]>('/users');
                 // setUsers(response.data);
-                const data = await repository.getUsers();
-                setUsers(data);
+                const response = await service.getAll();
+                setUsers(response.data);
             } catch (error) {
                 console.error('Error retrieving users:', error);
             } finally {

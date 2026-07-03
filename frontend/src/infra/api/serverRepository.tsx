@@ -1,5 +1,10 @@
 import type { ServerData } from "../domain/server/entity/server";
+import type { ServerService } from "../domain/server/serverServer";
+import api from "./api";
 
-export interface serverRepository {
-    getServer(): Promise<ServerData[]>;
+export class ServerRepository implements ServerService {
+  async getAll(params?: ServerData): Promise<ServerData[]> {
+    const response = await api.get<ServerData[]>('/servers', { params });
+    return response.data;
+  }
 }
