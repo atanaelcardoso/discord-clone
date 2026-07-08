@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react';
 import type { User } from '../../infra/domain/user/entity/user';
-import { suggestionservice } from '../../infra/domain/user/serverUser';
+import { SuggestionService } from '../../infra/domain/user/useCase/serverUser';
 
-const service = new suggestionservice();
+const service = new SuggestionService();
 
 
 export function userListHooks() {

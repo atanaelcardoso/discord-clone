@@ -1,7 +1,8 @@
-import { ServerRepository } from "../../api/serverRepository";
-import type { ServerData } from "./entity/server";
+import { ServerRepository } from "../../../api/serverRepository";
+import type { ServerData } from "../entity/server";
 
-export interface IserverRepository {
+
+export interface IServerRepository {
   getAll(): Promise<{ data: ServerData[] }>;
 }
 
@@ -9,7 +10,7 @@ export interface ServerService {
   getAll(params?: ServerData): Promise<ServerData[]>;
 }
 
-export class suggestionservice {
+export class SuggestionService {
   private serverRepository = new ServerRepository();
 
   async getAll(): Promise<{ data: ServerData[] }> {

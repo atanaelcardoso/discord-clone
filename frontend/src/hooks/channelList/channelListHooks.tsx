@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import type { MessageBackend } from "../../infra/domain/channel/entity/channel";
-import { suggestionservice } from "../../infra/domain/channel/serverChannel";
+import { SuggestionService } from "../../infra/domain/channel/useCase/serverChannel";
 
-const service = new suggestionservice();
+const service = new SuggestionService();
 
 export default function ChannelListHooks() {
     const [channels, setChannels] = useState<MessageBackend[]>([]);

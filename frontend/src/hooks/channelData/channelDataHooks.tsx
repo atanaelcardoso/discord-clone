@@ -1,9 +1,9 @@
 import { useEffect, useRef, useState, type KeyboardEvent } from "react";
 import type { MessageBackend } from "../../infra/domain/channel/entity/channel";
 import api from "../../infra/api/api";
-import { suggestionservice } from "../../infra/domain/channel/serverChannel";
+import { SuggestionService } from "../../infra/domain/channel/useCase/serverChannel";
 
-const service = new suggestionservice();
+const service = new SuggestionService();
 
 export default function ChannelDataHooks() {
   const [messages, setMessages] = useState<MessageBackend[]>([]);

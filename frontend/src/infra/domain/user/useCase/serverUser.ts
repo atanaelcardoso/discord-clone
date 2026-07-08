@@ -1,14 +1,14 @@
-import { UserRepository } from "../../api/userRepository";
-import type { User } from "./entity/user";
+import { UserRepository } from "../../../api/userRepository";
+import type { User } from "../entity/user";
 
 export interface IUserRepository {
   getAll(): Promise<{ data: User[] }>;
 }
-export interface userService {
+export interface UserService {
   getAll(params?: User): Promise<User[]>;
 }
 
-export class suggestionservice {
+export class SuggestionService {
   private userRepository = new UserRepository();
 
   async getAll(): Promise<{ data: User[] }> {
