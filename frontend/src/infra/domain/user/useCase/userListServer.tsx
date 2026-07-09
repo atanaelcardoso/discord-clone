@@ -1,5 +1,5 @@
 import { useTranslation } from 'react-i18next';
-import { userListHooks } from '../../../../hooks/userList/userListHooks';
+import { UserListHooks } from '../../../../hooks/userList/userListHooks';
 import { Container, Role, User, Avatar } from '../styles/stylesUserList';
 import type { UserProps } from '../entity/user';
 
@@ -18,7 +18,7 @@ function UserRow({ nickname, isBot, avatarUrl }: UserProps) {
 
 export default function UserList() {
   const { t } = useTranslation();
-  const { users, loading } = userListHooks();
+  const { users, loading } = UserListHooks();
 
   if (loading) {
     return (
@@ -38,7 +38,7 @@ export default function UserList() {
         users.map(user => (
           <UserRow
             key={user.id}
-            nickname={user.nickname}
+            nickname={user.name}
             isBot={user.isBot}
             avatarUrl={user.avatar}
           />

@@ -1,7 +1,6 @@
 import { ServerRepository } from "../../../api/serverRepository";
 import type { ServerData } from "../entity/server";
 
-
 export interface IServerRepository {
   getAll(): Promise<{ data: ServerData[] }>;
 }

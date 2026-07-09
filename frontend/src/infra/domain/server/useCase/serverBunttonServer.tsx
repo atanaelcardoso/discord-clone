@@ -1,25 +1,21 @@
-
 import { Button } from '../styles/stylesServerButton';
 import Logo from '../../../../../src/assets/Logo.svg'
 import type { ServerButtonProps } from '../entity/server';
 
-
-
-
 export default function ServerButton({
-    selected, 
+    selected,
     isHome,
     hasNotifications,
     mentions,
-    title 
+    title
 }: ServerButtonProps) {
     const getInitials = (name?: string) => {
         if (!name) return '';
         return name
-            .split(' ')                   
-            .map(word => word[0]) 
+            .split(' ')
+            .map(word => word[0])
             .join('')
-            .slice(0, 2)  
+            .slice(0, 2)
             .toUpperCase();
     };
 
@@ -27,7 +23,7 @@ export default function ServerButton({
         <Button
             $isHome={isHome}
             $hasNotifications={hasNotifications}
-            $mentions={mentions}                 
+            $mentions={mentions}
             className={selected ? 'active' : ''}
         >
             {isHome ? (

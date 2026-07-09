@@ -11,7 +11,6 @@ export default function ChannelListHooks() {
     useEffect(() => {
         async function fetchChannels() {
             try {
-                // const response = await api.get('/channels');
                 const response = await service.getAll();
                 setChannels(response.data);
             } catch (error) {

@@ -9,6 +9,9 @@ export interface MessageBackend {
     content: string;
     createdAt: string;
     channelId: number;
+    isBot?: boolean;
+    avatarUrl?: string;
+    avatar?: string;
     user: {
         nickname: string;
         isBot: boolean;

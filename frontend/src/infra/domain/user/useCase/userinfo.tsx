@@ -13,12 +13,10 @@ import {
 } from '../styles/stylesUserInfo';
 import { UserInfoHooks } from '../../../../hooks/userInfo/userInfoHooks';
 
-
 export default function UserInfo() {
     const { t } = useTranslation();
-    const { user, loading} = UserInfoHooks();
+    const { user, loading } = UserInfoHooks();
 
-    
 
     if (loading) {
         return (

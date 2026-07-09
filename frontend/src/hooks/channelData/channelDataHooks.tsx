@@ -14,7 +14,6 @@ export default function ChannelDataHooks() {
   useEffect(() => {
     async function fetchMessages() {
       try {
-        //const response = await api.get<MessageBackend[]>(`/messages/${currentChannelId}`);
         const response = await service.getAll();
         setMessages(response.data);
       } catch (error) {

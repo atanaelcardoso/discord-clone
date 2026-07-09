@@ -11,11 +11,6 @@ export function UserInfoHooks() {
     useEffect(() => {
         async function fetchUser() {
             try {
-                // const response = await api.get<User[]>('/users');
-
-                // if (response.data.length > 0) {
-                //     setUser(response.data[0]);
-                // }
                 const response = await service.getAll();
                 if (response.data.length > 0) {
                     setUser(response.data[0]);
