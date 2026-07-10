@@ -1,9 +1,9 @@
 import { useEffect, useRef, useState, type KeyboardEvent } from "react";
 import type { MessageBackend } from "../../infra/domain/channel/entity/channel";
+import { apiChannelServices } from "../../infra/domain/apiChannelServices";
 import api from "../../infra/api/api";
-import { SuggestionService } from "../../infra/domain/channel/useCase/serverChannel";
 
-const service = new SuggestionService();
+const { channelServices } = apiChannelServices();
 
 export default function ChannelDataHooks() {
   const [messages, setMessages] = useState<MessageBackend[]>([]);
@@ -14,8 +14,8 @@ export default function ChannelDataHooks() {
   useEffect(() => {
     async function fetchMessages() {
       try {
-        const response = await service.getAll();
-        setMessages(response.data);
+        const data = await channelServices.getAll();
+        setMessages(data);
       } catch (error) {
         console.error('Error retrieving messages:', error);
       }

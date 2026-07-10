@@ -4,7 +4,7 @@ import type { UserService } from "../domain/user/useCase/serverUser";
 
 export class UserRepository implements UserService {
 
-   api: AxiosInstance;
+  api: AxiosInstance;
   constructor(apiInstance: AxiosInstance) {
     this.api = apiInstance;
   }

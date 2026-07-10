@@ -10,7 +10,11 @@ export interface ServerService {
 }
 
 export class SuggestionService {
-  private serverRepository = new ServerRepository();
+  serverRepository: ServerRepository;
+
+  constructor(serverResitoryInstance: ServerRepository) {
+    this.serverRepository = serverResitoryInstance
+  }
 
   async getAll(): Promise<{ data: ServerData[] }> {
     const serversArray = await this.serverRepository.getAll();

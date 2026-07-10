@@ -10,7 +10,11 @@ export interface ChannelService {
 }
 
 export class SuggestionService {
-  private channelRepository = new ChannelRepository();
+  channelRepository: ChannelRepository;
+  
+  constructor(channelResitoryInstance: ChannelRepository) {
+    this.channelRepository = channelResitoryInstance
+  }
 
   async getAll(): Promise<{ data: MessageBackend[] }> {
     const channelsArray = await this.channelRepository.getAll();

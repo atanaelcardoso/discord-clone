@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import type { User } from "../../infra/domain/user/entity/user";
-import { ApiService } from "../../infra/domain/apiServices";
+import { ApiService } from "../../infra/domain/apiUserServices";
 
 const { userService } = ApiService();
 

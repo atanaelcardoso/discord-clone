@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import type { MessageBackend } from "../../infra/domain/channel/entity/channel";
-import { SuggestionService } from "../../infra/domain/channel/useCase/serverChannel";
+import { apiChannelServices } from "../../infra/domain/apiChannelServices";
 
-const service = new SuggestionService();
+const { channelServices } = apiChannelServices();
 
 export default function ChannelListHooks() {
     const [channels, setChannels] = useState<MessageBackend[]>([]);
@@ -11,8 +11,8 @@ export default function ChannelListHooks() {
     useEffect(() => {
         async function fetchChannels() {
             try {
-                const response = await service.getAll();
-                setChannels(response.data);
+                const data = await channelServices.getAll();
+                setChannels(data);
             } catch (error) {
                 console.error('Error retrieving backend channels:', error);
             } finally {

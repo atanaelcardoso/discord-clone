@@ -1,5 +1,5 @@
-import { UserRepository } from "../../../api/userRepository";
-import type { User } from "../entity/user";
+import { UserRepository } from '../../../api/userRepository';
+import type { User } from '../entity/user';
 
 export interface IUserRepository {
   getAll(): Promise<{ data: User[] }>;
@@ -9,7 +9,11 @@ export interface UserService {
 }
 
 export class SuggestionService {
-  private userRepository = new UserRepository();
+  userRepository: UserRepository;
+
+  constructor(userRepositoryInstance: UserRepository) {
+    this.userRepository = userRepositoryInstance;
+  }
 
   async getAll(): Promise<{ data: User[] }> {
     const usersArray = await this.userRepository.getAll();

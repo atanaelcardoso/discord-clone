@@ -1,18 +1,18 @@
 import { useEffect, useState } from "react";
-import { SuggestionService } from "../../infra/domain/channel/useCase/serverChannel";
-import type { MessageBackend } from "../../infra/domain/channel/entity/channel";
+import { ApiService } from "../../infra/domain/apiUserServices";
+import type { User } from "../../infra/domain/user/entity/user";
 
-const service = new SuggestionService();
+const { userService } = ApiService();
 
 export function UserListHooks() {
-    const [users, setUsers] = useState<MessageBackend[]>([]);
+    const [users, setUsers] = useState<User[]>([]);
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         async function fetchUsers() {
             try {
-                const response = await service.getAll();
-                setUsers(response.data);
+                const data = await userService.getAll();
+                setUsers(data);
             } catch (error) {
                 console.error('Error retrieving users:', error);
             } finally {
