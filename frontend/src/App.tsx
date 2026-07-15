@@ -1,13 +1,11 @@
-import Layout from "./components/Layout";
-import GlobalStyles from "./styles/GlobalStyles";
+import Layout from "./layout/layout";
+import GlobalStyles from "./GlobalStyles";
 
 function App() {
   return (
     <>
-
-      <Layout/>
-      <GlobalStyles/>
-    
+      <Layout />
+      <GlobalStyles />
     </>   
   );
 }
