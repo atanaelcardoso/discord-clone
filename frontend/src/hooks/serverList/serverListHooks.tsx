@@ -1,14 +1,14 @@
 import { useEffect, useState } from "react";
 import type { ServerData } from "../../infra/domain/server/entity/server";
-import { ApiServerServices } from "../../infra/domain/apiServerServices";
+import { apiServices } from "../../infra/domain/apiServices";
 
-const { serverServices } = ApiServerServices();
+const { serverService } = apiServices();
 
 export function ServerListHooks() {
     const [servers, setServers] = useState<ServerData[]>([]);
 
     useEffect(() => {
-        serverServices.getAll()
+        serverService.getAll()
             .then(data => {
                 setServers(data);
             })

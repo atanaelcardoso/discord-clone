@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { ApiServerServices } from "../../infra/domain/apiServerServices";
 import type { ServerData } from "../../infra/domain/server/entity/server";
+import { apiServices } from "../../infra/domain/apiServices";
 
-const { serverServices } = ApiServerServices();
+const { serverService } = apiServices();
 
 export function ServerNameHooks() {
   const { t } = useTranslation();
@@ -12,7 +12,7 @@ export function ServerNameHooks() {
   useEffect(() => {
     async function fetchServerName() {
       try {
-        const data = await serverServices.getAll() as ServerData[] | ServerData;
+        const data = await serverService.getAll() as ServerData[] | ServerData;
         if (Array.isArray(data)) {
           setServerName(data[0]?.name || t('Servidor Central'));
         } else {

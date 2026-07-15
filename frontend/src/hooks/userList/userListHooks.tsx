@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
-import { ApiService } from "../../infra/domain/apiUserServices";
 import type { User } from "../../infra/domain/user/entity/user";
+import { apiServices } from "../../infra/domain/apiServices";
 
-const { userService } = ApiService();
+const { userService } = apiServices();
 
 export function UserListHooks() {
     const [users, setUsers] = useState<User[]>([]);
