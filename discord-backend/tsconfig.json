@@ -19,9 +19,9 @@
     "noUncheckedSideEffectImports": true,
     "moduleDetection": "force",
     "verbatimModuleSyntax": false,
-    "types": ["node"],
+    "types": ["node","jest"],
     "allowImportingTsExtensions": true,
-    "noEmit": true
+    "noEmit": true,
   },
   "include": ["src/**/*"],
   "exclude": ["node_modules", "dist"]

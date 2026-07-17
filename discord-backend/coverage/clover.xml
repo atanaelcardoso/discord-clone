@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<coverage generated="1784313164499" clover="3.2.0">
+  <project timestamp="1784313164499" name="All files">
+    <metrics statements="8" coveredstatements="8" conditionals="0" coveredconditionals="0" methods="4" coveredmethods="4" elements="12" coveredelements="12" complexity="0" loc="8" ncloc="8" packages="1" files="1" classes="1"/>
+    <file name="messageService.ts" path="/home/atanael/Documentos/githubA3/discord-clone/discord-backend/src/domain/message/useCase/messageService.ts">
+      <metrics statements="8" coveredstatements="8" conditionals="0" coveredconditionals="0" methods="4" coveredmethods="4"/>
+      <line num="5" count="1" type="stmt"/>
+      <line num="9" count="1" type="stmt"/>
+      <line num="13" count="1" type="stmt"/>
+      <line num="14" count="1" type="stmt"/>
+      <line num="15" count="1" type="stmt"/>
+      <line num="16" count="1" type="stmt"/>
+      <line num="20" count="1" type="stmt"/>
+      <line num="24" count="1" type="stmt"/>
+    </file>
+  </project>
+</coverage>

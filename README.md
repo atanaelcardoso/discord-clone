@@ -6,7 +6,7 @@ This is a Discord clone built using React, Node.js, Express, and Socket.IO. It a
 
 ## Architecture
 
-![Discord Clone UML](./.github/diagram-uml.jpeg)
+![Discord Clone UML](./.github/diagrama-uml.png)
 
 ## Getting Started
 

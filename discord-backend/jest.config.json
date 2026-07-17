@@ -1,0 +1,15 @@
+{
+  "testEnvironment": "node",
+  "extensionsToTreatAsEsm": [".ts"],
+  "moduleFileExtensions": ["ts", "js", "json", "node"],
+  "transform": {
+    "^.+\\.tsx?$": ["ts-jest", { "useESM": true }]
+  },
+  "moduleNameMapper": {
+    "^(\\.\\.?/.*)\\.js$": "$1"
+  },
+  "transformIgnorePatterns": [
+    "/node_modules/"
+  ]
+}
+
