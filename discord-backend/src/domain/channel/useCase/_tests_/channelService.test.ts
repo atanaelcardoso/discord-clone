@@ -2,14 +2,12 @@ import { jest, describe, it, expect, beforeEach } from '@jest/globals';
 import type { ChannelService as ChannelServiceType } from '../channelService.js';
 import type { Channel, ChannelType } from '../../entity/channel.js';
 
-// 🛠️ Mocks corrigidos para voltar 4 pastas (../../../../)
 const mockFindAll = jest.fn<() => Promise<Channel[]>>();
 const mockCreate = jest.fn<(name: string, serverId: number, type: ChannelType) => Promise<Channel>>();
 const mockUpdate = jest.fn<(id: number, name: string, type: ChannelType) => Promise<Channel>>();
 const mockPatch = jest.fn<(id: number, name: string) => Promise<Channel>>();
 const mockDelete = jest.fn<(id: number) => Promise<void>>();
 
-// 🛠️ Ajustado para 4 pontos para encontrar a pasta infra/repository
 jest.unstable_mockModule('../../../../infra/repository/channelRepository.js', () => ({
   ChannelRepository: class {
     findAll = mockFindAll;
