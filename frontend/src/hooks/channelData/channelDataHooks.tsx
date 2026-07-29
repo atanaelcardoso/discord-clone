@@ -5,7 +5,7 @@ import api from "../../infra/api/api";
 
 const { channelService } = apiServices();
 
-export default function ChannelDataHooks() {
+export default function useChannelData() {
   const [messages, setMessages] = useState<MessageBackend[]>([]);
   const [inputText, setInputText] = useState('');
   const messagesRef = useRef<HTMLDivElement>(null);

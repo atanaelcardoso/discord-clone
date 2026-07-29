@@ -4,7 +4,7 @@ import { apiServices } from "../../infra/domain/apiServices";
 
 const { serverService } = apiServices();
 
-export function ServerListHooks() {
+export function useServerList() {
     const [servers, setServers] = useState<ServerData[]>([]);
 
     useEffect(() => {

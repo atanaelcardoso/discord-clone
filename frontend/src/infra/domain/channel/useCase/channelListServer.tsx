@@ -1,12 +1,12 @@
-import ChannelButton from './channelBunttonServer';
 import '../../../i18n/i18n'
 import { useTranslation } from 'react-i18next';
 import { Container, Category, AddCategoryIcon } from '../styles/stylesChannelList'
-import ChannelListHooks from '../../../../hooks/channelList/channelListHooks';
+import useChannelList from '../../../../hooks/channelList/channelListHooks';
+import ChannelButton from './ChannelButtonServer';
 
 export default function ChannelList() {
     const { t } = useTranslation();
-    const {channels, loading} = ChannelListHooks();
+    const {channels, loading} = useChannelList();
 
     return (
         <Container>
@@ -23,7 +23,7 @@ export default function ChannelList() {
                 channels.map((channel) => (
                     <ChannelButton
                         key={channel.id}
-                        ChannelName={channel.name}
+                        channelName={channel.name}
                     />
                 ))
             )}

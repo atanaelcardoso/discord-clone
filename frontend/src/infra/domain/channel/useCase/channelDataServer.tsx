@@ -1,7 +1,7 @@
 import '../../../i18n/i18n'
 import { useTranslation } from 'react-i18next';
 import { Container, Message, InputWrapper, Input, InputIcon } from '../styles/stylesChannelData';
-import ChannelDataHooks from '../../../../hooks/channelData/channelDataHooks';
+import useChannelData from '../../../../hooks/channelData/channelDataHooks';
 import { formatDate } from '../../../../utils/formatterDate';
 import ChannelMessage from './channelMessageServer';
 
@@ -13,7 +13,7 @@ export default function ChannelData() {
         setInputText,
         messagesRef,
         handleKeyDown
-    } = ChannelDataHooks();
+    } = useChannelData();
 
     return (
         <Container>

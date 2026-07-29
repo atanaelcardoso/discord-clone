@@ -3,7 +3,6 @@ import { Hashtag } from "styled-icons/heroicons-outline";
 import { PersonAdd , Settings } from "styled-icons/material";
 
 export const Container = styled.div`
-    grid-area: CL;
     display: flex;
     align-items: center;
     justify-content: space-between;

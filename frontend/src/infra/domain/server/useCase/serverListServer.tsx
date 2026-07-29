@@ -1,9 +1,9 @@
-import ServerButton from './serverBunttonServer';
+import ServerButton from './ServerButtonServer';
 import { Container, Separator } from '../styles/stylesServerList'
-import { ServerListHooks } from '../../../../hooks/serverList/serverListHooks';
+import { useServerList } from '../../../../hooks/serverList/serverListHooks';
 
 export default function ServerList() {
-    const { servers } = ServerListHooks();
+    const { servers } = useServerList();
 
     return (
         <Container>
