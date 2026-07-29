@@ -20,7 +20,7 @@ export class ChannelService {
       const channelUpdated = await channelRepository.update(id, body.name, body.type);
       return channelUpdated;
     } catch (error) {
-      throw new Error(`Error on updated the channel: ${(error as Error).message}`);
+      throw new Error(`Error updating the channel: ${(error as Error).message}`);
     }
   }
 

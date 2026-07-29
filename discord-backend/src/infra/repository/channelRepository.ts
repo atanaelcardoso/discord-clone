@@ -1,6 +1,5 @@
 import { prisma } from '../database/database.ts';
-import { Channel } from '../../domain/channel/entity/channel.ts';
-import { ChannelType } from '../../domain/channel/entity/channel.ts';
+import { Channel, ChannelType } from '../../types/index.ts';
 
 
 export class ChannelRepository {

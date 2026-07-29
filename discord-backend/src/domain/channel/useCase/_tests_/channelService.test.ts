@@ -104,7 +104,7 @@ describe('ChannelService', () => {
 
     await expect(channelService.update(idCanal, dadosAtualizados))
       .rejects
-      .toThrow('Error on updated the channel: Database timeout');
+      .toThrow('Error updating the channel: Database timeout');
   });
 
   it('deve atualizar parcialmente apenas o nome do canal', async () => {

@@ -5,7 +5,7 @@ import { apiServices } from "../../infra/domain/apiServices";
 
 const { serverService } = apiServices();
 
-export function ServerNameHooks() {
+export function useServerName() {
   const { t } = useTranslation();
   const [serverName, setServerName] = useState<string>('Loading...');
 

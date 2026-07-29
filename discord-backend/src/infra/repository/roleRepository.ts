@@ -1,4 +1,4 @@
-import { Role } from '../../domain/role/entity/role.ts';
+import { Role } from '../../types/index.ts';
 import { prisma } from '../database/database.ts';
 
 export class RoleRepository {

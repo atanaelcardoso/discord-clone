@@ -4,7 +4,7 @@ import { apiServices } from "../../infra/domain/apiServices";
 
 const { userService } = apiServices();
 
-export function UserInfoHooks() {
+export function useUserInfo() {
     const [user, setUser] = useState<User>();
     const [loading, setLoading] = useState(true);
 

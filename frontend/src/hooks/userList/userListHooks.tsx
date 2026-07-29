@@ -4,7 +4,7 @@ import { apiServices } from "../../infra/domain/apiServices";
 
 const { userService } = apiServices();
 
-export function UserListHooks() {
+export function useUserList() {
     const [users, setUsers] = useState<User[]>([]);
     const [loading, setLoading] = useState(true);
 

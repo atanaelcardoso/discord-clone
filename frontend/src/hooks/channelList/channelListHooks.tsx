@@ -4,7 +4,7 @@ import { apiServices } from "../../infra/domain/apiServices";
 
 const { channelService } = apiServices();
 
-export default function ChannelListHooks() {
+export default function useChannelList() {
     const [channels, setChannels] = useState<MessageBackend[]>([]);
     const [loading, setLoading] = useState(true);
 

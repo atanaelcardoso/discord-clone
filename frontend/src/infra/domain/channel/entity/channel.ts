@@ -1,5 +1,5 @@
 export interface ChannelButtonProps {
-    ChannelName: string;
+    channelName: string;
     selected?: boolean;
 }
 

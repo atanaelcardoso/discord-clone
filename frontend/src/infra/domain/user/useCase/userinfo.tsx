@@ -11,11 +11,11 @@ import {
     HeadphoneIcon,
     SettingsIcon
 } from '../styles/stylesUserInfo';
-import { UserInfoHooks } from '../../../../hooks/userInfo/userInfoHooks';
+import { useUserInfo } from '../../../../hooks/userInfo/userInfoHooks';
 
 export default function UserInfo() {
     const { t } = useTranslation();
-    const { user, loading } = UserInfoHooks();
+    const { user, loading } = useUserInfo();
 
 
     if (loading) {

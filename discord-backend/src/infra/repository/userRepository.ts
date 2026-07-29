@@ -1,4 +1,4 @@
-import { User } from '../../domain/user/entity/user.ts';
+import { User } from '../../types/index.ts';
 import { prisma } from '../database/database.ts';
 
 export class UserRepository {
