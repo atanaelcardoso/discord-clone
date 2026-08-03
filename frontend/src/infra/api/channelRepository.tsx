@@ -11,4 +11,14 @@ export class ChannelRepository implements ChannelService {
     const response = await this.api.get<MessageBackend[]>('/channels', { params });
     return response.data;
   }
+
+  async getMessages(channelId: number): Promise<MessageBackend[]> {
+    const response = await this.api.get<MessageBackend[]>(`/messages/${channelId}`);
+    return response.data;
+  }
+
+  async sendMessage(message: { content: string; userId: number; channelId: number }): Promise<MessageBackend> {
+    const response = await this.api.post<MessageBackend>('/messages', message);
+    return response.data;
+  }
 }
