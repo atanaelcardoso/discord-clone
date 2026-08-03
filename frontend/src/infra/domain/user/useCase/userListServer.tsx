@@ -38,7 +38,7 @@ export default function UserList() {
         users.map(user => (
           <UserRow
             key={user.id}
-            nickname={user.name}
+            nickname={user.nickname}
             isBot={user.isBot}
             avatarUrl={user.avatar}
           />

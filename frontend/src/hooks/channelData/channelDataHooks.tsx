@@ -12,16 +12,26 @@ export default function useChannelData() {
   const currentChannelId = 1;
 
   useEffect(() => {
-    async function fetchMessages() {
+    let isMounted = true;
+
+    async function loadInitialMessages() {
       try {
-        const data = await channelService.getAll();
-        setMessages(data);
+        if (!channelService) return;
+        const response = await api.get<MessageBackend[]>(`/messages/${currentChannelId}`);
+        
+        if (isMounted) {
+          setMessages(response.data);
+        }
       } catch (error) {
         console.error('Error retrieving messages:', error);
       }
     }
 
-    fetchMessages();
+    loadInitialMessages();
+
+    return () => {
+      isMounted = false;
+    };
   }, [currentChannelId]);
 
   useEffect(() => {
@@ -35,10 +45,11 @@ export default function useChannelData() {
     if (event.key === 'Enter' && inputText.trim() !== '') {
       try {
         await api.post('/messages', {
-          content: inputText,
-          userId: 1,
+          content: inputText.trim(),
+          userId: 1, 
           channelId: currentChannelId
         });
+        
         setInputText('');
 
         const response = await api.get<MessageBackend[]>(`/messages/${currentChannelId}`);

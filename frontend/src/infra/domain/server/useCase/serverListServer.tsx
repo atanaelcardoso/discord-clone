@@ -1,24 +1,22 @@
 import ServerButton from './ServerButtonServer';
-import { Container, Separator } from '../styles/stylesServerList'
-import { useServerList } from '../../../../hooks/serverList/serverListHooks';
+import { Container, Separator } from '../styles/stylesServerList';
+import { useUserList } from '../../../../hooks/serverList/serverListHooks';
 
 export default function ServerList() {
-    const { servers } = useServerList();
+    const { users } = useUserList(); 
 
     return (
         <Container>
-            { }
             <ServerButton isHome />
-
             <Separator />
 
-            { }
-            {servers.map(server => (
+            {}
+            {users && users.map(user => (
                 <ServerButton
-                    key={server.id}
-                    title={server.name}
+                    key={user.id}
+                    title={user.nickname}
                 />
             ))}
         </Container>
     );
-};
+};  
