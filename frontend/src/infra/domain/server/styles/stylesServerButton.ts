@@ -1,6 +1,4 @@
 import styled from "styled-components";
-
-// Definição da interface para o TypeScript parar de reclamar
 export interface ButtonProps {
   selected?: boolean;
   $isHome?: boolean;

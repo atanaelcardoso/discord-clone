@@ -7,6 +7,8 @@ export interface IChannelRepository {
 
 export interface ChannelService {
   getAll(params?: MessageBackend): Promise<MessageBackend[]>;
+  getMessages(channelId: number): Promise<MessageBackend[]>;
+  sendMessage(message: { content: string; userId: number; channelId: number }): Promise<MessageBackend>;
 }
 
 export class SuggestionService {
