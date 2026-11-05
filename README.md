@@ -113,13 +113,13 @@ cd discord-clone
 
 ### Instalar dependências
 
-O Docker Compose instala as dependências e inicia o frontend, a API e o banco de dados:
+O Docker Compose inicia o frontend, a API e o banco de dados. Ele reutiliza as dependências das pastas locais `node_modules` e só tenta instalá-las se estiverem ausentes:
 
 ```bash
-docker compose up -d
+LOCAL_UID=$(id -u) LOCAL_GID=$(id -g) docker compose up -d
 ```
 
-Em um banco vazio, a API cria os dados de demonstração automaticamente. Bancos que já contêm dados são preservados.
+Se as dependências estiverem ausentes, a primeira instalação exige acesso ao registry do npm. Em um banco vazio, a API cria os dados de demonstração automaticamente. Bancos que já contêm dados são preservados.
 ---
 
 ### 🌐 URLs da Aplicação

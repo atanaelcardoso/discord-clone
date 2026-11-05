@@ -6,3 +6,5 @@ export interface User {
   email: string;
   password: string;
 }
+
+export type PublicUser = Omit<User, 'password'>;

@@ -1,11 +1,22 @@
 import { prisma } from '../database/database.ts';
 import { Message } from '../../types/index.ts';
+import type { PublicUser } from '../../domain/user/entity/user.ts';
 
 export class MessageRepository {
-  public async findByChannel(channelId: number): Promise<Message[]> {
+  public async findByChannel(channelId: number): Promise<Array<Message & { user: PublicUser }>> {
     const messages = await prisma.message.findMany({
       where: { channelId },
-      include: { user: true }
+      include: {
+        user: {
+          select: {
+            id: true,
+            nickname: true,
+            avatar: true,
+            isBot: true,
+            email: true
+          }
+        }
+      }
     });
     return messages;
   }
