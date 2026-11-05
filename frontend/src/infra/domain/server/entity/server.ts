@@ -8,6 +8,6 @@ export interface ServerButtonProps {
 
 export interface ServerData {
     id: number;
-    nickname: string;
-    icon?: string;
+    name: string;
+    icon?: string | null;
 }

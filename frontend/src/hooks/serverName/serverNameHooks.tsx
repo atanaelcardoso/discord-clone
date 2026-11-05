@@ -12,12 +12,8 @@ export function useServerName() {
   useEffect(() => {
     async function fetchServerName() {
       try {
-        const data = await serverService.getAll() as ServerData[] | ServerData;
-        if (Array.isArray(data)) {
-          setServerName(data[0]?.nickname || t('Servidor Central'));
-        } else {
-          setServerName(data?.nickname || t('Servidor Central'));
-        }
+        const data: ServerData[] = await serverService.getAll();
+        setServerName(data[0]?.name || t('Servidor Central'));
       } catch (error) {
         console.error('API request error:', error);
         setServerName(t('Servidor Offline'));

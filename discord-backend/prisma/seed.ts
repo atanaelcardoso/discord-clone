@@ -1,13 +1,20 @@
 import { prisma } from '../src/infra/database/database.ts';
 
 async function seed() {
-  console.log('Clearing database...');
+  const recordCounts = await Promise.all([
+    prisma.user.count(),
+    prisma.server.count(),
+    prisma.channel.count(),
+    prisma.message.count(),
+    prisma.role.count(),
+    prisma.serverMember.count(),
+    prisma.memberRole.count(),
+  ]);
 
-  await prisma.message.deleteMany();
-  await prisma.role.deleteMany();
-  await prisma.channel.deleteMany();
-  await prisma.server.deleteMany();
-  await prisma.user.deleteMany();
+  if (recordCounts.some((count) => count > 0)) {
+    console.log('Database already contains data; skipping sample seed.');
+    return;
+  }
 
   console.log('Creating users...');
 

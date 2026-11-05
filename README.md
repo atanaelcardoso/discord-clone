@@ -8,7 +8,7 @@
 
 ## 📖 Sobre o Projeto
 
-O Discord Clone é uma aplicação Full Stack inspirada no Discord, desenvolvida com React.js, Node.js, PostgreSQL e Prisma ORM.
+O Discord Clone é uma aplicação Full Stack inspirada no Discord, desenvolvida com React.js, Node.js, MySQL e Prisma ORM.
 
 O projeto foi criado para praticar conceitos avançados de desenvolvimento web moderno, arquitetura cliente-servidor, APIs REST, modelagem de banco de dados e organização de aplicações escaláveis.
 
@@ -34,7 +34,7 @@ A plataforma permite o gerenciamento de usuários, servidores, canais, cargos e 
 
 ### Banco de Dados
 
-- PostgreSQL
+- MySQL
 
 ### DevOps
 
@@ -88,7 +88,7 @@ A plataforma permite o gerenciamento de usuários, servidores, canais, cargos e 
 - Arquitetura Cliente-Servidor
 - APIs REST
 - ORM com Prisma
-- PostgreSQL
+- MySQL
 - Docker Compose
 - Dependency Injection
 - Clean Architecture
@@ -113,22 +113,13 @@ cd discord-clone
 
 ### Instalar dependências
 
-```bash
-npm install
-```
-
-
-### Subir containers
+O Docker Compose instala as dependências e inicia o frontend, a API e o banco de dados:
 
 ```bash
-docker-compose up -d
+docker compose up -d
 ```
 
-### Executar aplicação
-
-```bash
-npm run dev
-```
+Em um banco vazio, a API cria os dados de demonstração automaticamente. Bancos que já contêm dados são preservados.
 ---
 
 ### 🌐 URLs da Aplicação
@@ -138,15 +129,13 @@ Após iniciar os serviços:
 | Serviço | URL |
 |----------|----------|
 | Frontend | http://localhost:5173 |
-| Backend API | http://localhost:3000 |
+| Backend API | http://localhost:3333 |
 
-O servidor backend será executado em:
+O banco de dados MySQL será publicado na porta `3307` do host para evitar conflito com instalações locais:
 
 ```text
-http://localhost:3000
+localhost:3307
 ```
-
-A aplicação frontend estará disponível em:
 
 ```text
 http://localhost:5173
